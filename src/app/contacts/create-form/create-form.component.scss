@@ -139,10 +139,19 @@ border: 5px;
   text-align: center;
    
   color: white;
-  font-size: 10px;
+  font-size: 15px;
   
 }
-.tablebody{
-  border-color: red;
-  text-align: center;
+
+.table-bordered tbody tr td{
+  border: 1px solid #f00;
+  align-items: center;
 }
+ 
+.tablebody{
+   justify-items: center  ;
+}
+
+ 
+ 
+ 
