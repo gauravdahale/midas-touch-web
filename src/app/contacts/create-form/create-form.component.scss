@@ -1,0 +1,148 @@
+.personal {
+  display: flex;
+
+  
+}
+
+.mat-mdc-form-field {
+  width:100%;
+  padding-left: 2px;
+  padding-right: 2px;
+
+}
+
+.check {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+mat-card {
+  background-color: white;
+  border-radius: 20px;
+  
+}
+.container-fluid{
+  padding: 55px;
+}
+.btn{
+float: right;
+display: flex;
+
+}
+
+.sample{
+ margin-left: 50%
+}
+
+
+.title{
+  margin-left: 25px;
+  margin-top: 25px;
+
+  margin-bottom: 25px;
+}
+
+
+.close-icon {
+  position: absolute;
+  right: 8px; /* Adjust positioning as needed */
+   margin-top: 40px;
+   margin-right: 25px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.custom-select {
+  padding-right: 24px; /* Adjust padding to accommodate icon */
+}
+
+
+
+
+.btngroup{
+  border-radius: 25px;
+   background-color: rgb(231, 12, 12);
+   
+   width: 100px;
+   margin-left: 370px;     
+    
+}
+.mobn{
+  border-radius: 25px;
+  background-color: rgb(231, 12, 12);    
+  width: 50px;
+  margin-top: 10px;
+  
+}
+.btnsubmit{
+  border-radius: 25px;
+  background-color: rgb(231, 12, 12);    
+  width: 100px;
+  margin-top: 10px;
+margin-left: 48%;
+
+}
+.icons{
+  margin-top: 10px;
+  font-size: 100px;
+  
+}
+.circlebtn{
+width: 62px; /* Adjust as needed */
+height: 62px; /* Adjust as needed */
+border-radius: 70%; /* Creates a circle */
+background-color:grey; /* Set your desired color */
+color: white; /* Set your desired text color */
+border: none; /* Remove default border */
+padding: 0; /* Remove default padding */
+cursor: pointer;
+margin-right: 15px;
+margin-top: -5px;
+}
+
+.search{
+padding-left: 10px;
+padding-right: 10px;
+border: 5px;
+}
+.place{
+ margin-left: 6px;
+}
+
+.titlestyle{
+  background-color: rgb(199, 46, 46);
+  border-color: rgb(241, 97, 97);
+  text-align: center;
+  color: #f5eded;
+  
+}
+.fields{
+  display: flex;
+}
+ 
+  
+
+
+.btncheck{
+  margin-left: 320px;
+  background-color: red;
+  width: 80px;
+  border-radius: 50px;
+  
+}
+
+.tablehead{
+  background-color: red;
+  
+  text-align: center;
+   
+  color: white;
+  font-size: 10px;
+  
+}
+.tablebody{
+  border-color: red;
+  text-align: center;
+}
