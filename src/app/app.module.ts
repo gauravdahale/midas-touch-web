@@ -25,6 +25,10 @@ import {
 
 import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 import { NgScrollbarModule } from 'ngx-scrollbar';
+import { CreateFormComponent } from './contacts/create-form/create-form.component';
+import { EditLocationComponent } from './edit-location/edit-location.component';
+import { EditLanguangeComponent } from './edit-languange/edit-languange.component';
+import { EditTagComponent } from './edit-tag/edit-tag.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -39,6 +43,9 @@ export function createTranslateLoader(http: HttpClient) {
     RightSidebarComponent,
     AuthLayoutComponent,
     MainLayoutComponent,
+    EditLocationComponent,
+    EditLanguangeComponent,
+    EditTagComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,5 +71,6 @@ export function createTranslateLoader(http: HttpClient) {
     fakeBackendProvider,
   ],
   bootstrap: [AppComponent],
+  
 })
 export class AppModule {}

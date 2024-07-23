@@ -19,15 +19,19 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule,} from '@angular/material/dialog';
 import { MatSortModule } from '@angular/material/sort';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { ContactsService } from './contacts.service';
 import { ComponentsModule } from '../shared/components/components.module';
+import { CreateFormComponent } from './create-form/create-form.component';
+import { EditReferenceComponent } from './edit-reference/edit-reference.component';
+ 
+
 
 @NgModule({
-  declarations: [ContactsComponent, contactForm, DeleteComponent],
+  declarations: [ContactsComponent, contactForm, DeleteComponent, CreateFormComponent, EditReferenceComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -50,8 +54,10 @@ import { ComponentsModule } from '../shared/components/components.module';
     MatToolbarModule,
     MatMenuModule,
     MatProgressSpinnerModule,
-    ComponentsModule
+    ComponentsModule,
+    
   ],
-  providers: [ContactsService]
+  providers: [ContactsService], 
+
 })
 export class ContactsModule {}

@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ContactsService } from './contacts.service';
 import { HttpClient } from '@angular/common/http';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog,MatDialogConfig } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Contacts } from './contacts.model';
@@ -22,6 +22,7 @@ import { Direction } from '@angular/cdk/bidi';
 import { TableExportUtil } from 'src/app/shared/tableExportUtil';
 import { TableElement } from 'src/app/shared/TableElement';
 import { formatDate } from '@angular/common';
+import { CreateFormComponent } from './create-form/create-form.component';
 
 @Component({
   selector: 'app-contacts',
@@ -158,6 +159,16 @@ export class ContactsComponent
       }
     });
   }
+
+onCreate(){
+const dialogRef= this.dialog.open(CreateFormComponent,{
+  height:'100%',
+  width:"180%"
+});
+  
+
+}
+
   deleteItem(row: Contacts) {
     this.id = row.id;
     let tempDirection: Direction;
@@ -365,4 +376,6 @@ export class ExampleDataSource extends DataSource<Contacts> {
       );
     });
   }
+
+
 }
