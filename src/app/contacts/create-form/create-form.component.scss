@@ -135,12 +135,17 @@ border: 5px;
 
 .tablehead{
   background-color: red;
-  
   text-align: center;
-   
   color: white;
   font-size: 15px;
+  border: red;
   
+}
+ 
+
+.table-bordered tbody tr td{
+  border: 1px solid #f00;
+  align-items: center;
 }
 
 .table-bordered tbody tr td{
@@ -148,10 +153,15 @@ border: 5px;
   align-items: center;
 }
  
-.tablebody{
-   justify-items: center  ;
-}
+ 
 
+
+
+ 
+
+.tablebody{
+  text-align: center;
+}
  
  
  

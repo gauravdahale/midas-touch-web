@@ -132,7 +132,9 @@
         </mat-select>
         <mat-icon matIconSuffix style="color: red;">close</mat-icon>
       </mat-form-field>
-      <button mat-button class="icons"><mat-icon>edit_note</mat-icon></button>
+      <button mat-button class="icons"
+        (click)="editRef()"><mat-icon>edit_note</mat-icon></button>
+      <!-- <button mat-button class="icons"><mat-icon>edit_note</mat-icon></button> -->
 
       <mat-form-field appearance="outline">
         <mat-label>Hobby</mat-label>
@@ -154,7 +156,9 @@
         <mat-icon matIconSuffix style="color: red;">close</mat-icon>
       </mat-form-field>
 
-      <button mat-button class="icons"><mat-icon>edit_note</mat-icon></button>
+      <!-- <button mat-button class="icons"><mat-icon>edit_note</mat-icon></button> -->
+      <button mat-button class="icons"
+      (click)="editRef()"><mat-icon>edit_note</mat-icon></button>
 
       <mat-form-field appearance="outline">
         <mat-label>Notes</mat-label>
@@ -205,8 +209,12 @@
               <input matInput>
             </mat-form-field>
             <mat-form-field appearance="outline">
-              <mat-label>Select Type</mat-label>
+              <mat-label style="margin-left: 12px;">Select Type</mat-label>
               <mat-select>
+                <mat-form-field appearance="outline" class="search"> <input matInput
+                  type="text" placeholder="Search">
+                <mat-icon matPrefix>search</mat-icon>
+              </mat-form-field>
                 <mat-option *ngFor="let emailtype of Email" [value]="emailtype">{{emailtype}}</mat-option>
               </mat-select>
             </mat-form-field>
@@ -219,8 +227,12 @@
               <input matInput>
             </mat-form-field>
             <mat-form-field appearance="outline">
-              <mat-label>Select Type</mat-label>
+              <mat-label style="margin-left: 12px;"> Select Type</mat-label>
               <mat-select>
+                <mat-form-field appearance="outline" class="search"> <input matInput
+                  type="text" placeholder="Search">
+                <mat-icon matPrefix>search</mat-icon>
+              </mat-form-field>
                 <mat-option *ngFor="let mobiletype of Mobile" [value]="mobiletype">{{mobiletype}}</mat-option>
               </mat-select>
             </mat-form-field>
@@ -287,9 +299,7 @@
 
     <div class="row">
       <mat-form-field appearance="outline" floatLabel="always">
-        <mat-label>Organization And Website
-
-        </mat-label>
+        <mat-label>Organization And Website</mat-label>
         <input matInput hidden>
 
          <div class="row">     
@@ -301,17 +311,19 @@
                   <input matInput>
                   <mat-label>Organization Name</mat-label>
                 </mat-form-field>
-
               </div>
 
               <div class="col-md-5">
                 <mat-form-field appearance="outline" floatLabel="always">
                   <mat-label>Type</mat-label>
                   <mat-select placeholder="Select Type">
+                    <mat-form-field appearance="outline" class="search"> <input matInput
+                      type="text" placeholder="Search">
+                    <mat-icon matPrefix>search</mat-icon>
+                  </mat-form-field>
                     <mat-option *ngFor="let orgurl of Organization" [value]="orgurl">{{orgurl}}</mat-option>
                   </mat-select>
                 </mat-form-field>
-
               </div>
 
               <div class="col-md-2">
@@ -319,7 +331,7 @@
               </div>
              
               <div  [formGroup]="orgform"   class="col-md-12"  *ngIf="organizationUrl" >
-                <table class="table table-responsive table-bordered" style="border: #f00;" >
+                <table class="table table-responsive table-bordered" >
                   <thead formArrayName="itemsorg" class="tablehead">
                     <th>Value</th>
                     <th>Type</th>
@@ -330,7 +342,7 @@
                     <tr>
                         <td></td>
                         <td></td>
-                        <td><i class="fa fa-close" (click)="deletewebItems(i)" style="color: #f00"></i></td>
+                        <td><i class="fa fa-close" (click)="deleteorgItems(i)" style="color: red;"></i></td>
                       </tr>
                     
                   </tbody>
@@ -378,7 +390,11 @@
                 <mat-form-field appearance="outline" floatLabel="always">
                   <mat-label>Type</mat-label>
                   <mat-select placeholder="Select Type" >
-                    <mat-option *ngFor="let webitem of Websitetype" [value]="webitems">{{webitems}}</mat-option>
+                    <mat-form-field appearance="outline" class="search"> <input matInput
+                      type="text" placeholder="Search">
+                    <mat-icon matPrefix>search</mat-icon>
+                  </mat-form-field>
+                    <mat-option *ngFor="let webitem of Websitetype" [value]="webitems">{{webitem}}</mat-option>
                   </mat-select>
                 </mat-form-field>
 
@@ -386,10 +402,51 @@
 
               <div class="col-md-2">
                 <button mat-button (click)="websiteadd()" class="mobn" style="margin-left: 10px;">Add</button>
-              </div>
-               
+              </div>  
             </div>
-            <div  [formGroup]="webform"   class="col-md-12"  *ngIf="websiteUrl" >
+
+            <div  [formGroup]="orgform"   class="col-md-12"  *ngIf="websiteUrl" >
+              <table class="table table-responsive table-bordered" >
+                <thead formArrayName="webitems" class="tablehead">
+                  <th>Value</th>
+                  <th>Type</th>
+                  <th>Action</th>
+                </thead>
+
+                <tbody *ngFor="let item of webitems.controls; let i=index" class="tablebody">
+                  <tr>
+                      <td></td>
+                      <td></td>
+                      <td><i class="fa fa-close" (click)="deletewebItems(i)" style="color: red;"></i></td>
+                    </tr>
+                  
+                </tbody>
+              </table>
+              <!-- <div [formGroup]="form1" class="addbtnclick" >
+                <div formArrayName="items1" >
+                  <input placeholder="Value" class="titlestyle">
+                  <input placeholder="Type" class="titlestyle">
+                  <input placeholder="Action" class="titlestyle">
+                  <div *ngFor="let item of items1.controls;let i=index"
+                    formGroupName="i" class="fields">
+                    <div>
+                      <input style="border-color: red;" formControlName="name1"
+                        type="text" />
+                    </div>
+                    <div>
+                      <input style="border-color: red;" formControlName="age1"
+                        type="text" />
+                    </div>
+                    <div>
+                      <input style="border-color: red;"
+                        (click)="deleteItems1(i)">
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+            </div>
+
+            <!-- <div  [formGroup]="webform"   class="col-md-12"  *ngIf="websiteUrl" >
               <table class="table table-responsive table-bordered" class="table" style="border: #f00;">
                 <thead formArrayName="webitems" class="tablehead">
                   <th>Value</th>
@@ -401,16 +458,11 @@
                   <tr>
                       <td></td>
                       <td></td>
-                      <td><i class="fa fa-close" (click)="deleteorgItems(i)"></i></td>
-                    </tr>
-                  
+                      <td><i class="fa fa-close" (click)="deletewebItems(i)"></i></td>
+                    </tr>   
                 </tbody>
               </table>
-
-          </div>
-
-
-
+          </div> -->
         </div>
         </div>
 
