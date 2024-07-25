@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {MatDialog} from '@angular/material/dialog';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {EditReferenceComponent} from '../edit-reference/edit-reference.component';
 import {EditLanguangeComponent} from 'src/app/edit-languange/edit-languange.component';
 import {EditLocationComponent} from 'src/app/edit-location/edit-location.component';
@@ -72,6 +72,7 @@ export class CreateFormComponent {
                 private fbApi: FormBuilder,
                 private readonly mService:ContactsService,
                 private titlecasePipe: TitleCasePipe,
+                private  mDialogRef:MatDialogRef<CreateFormComponent>,
                 private  mSnackBar:MatSnackBar,
                 private readonly mDatabase: AngularFireDatabase) {
         this.prefixes$ = this.mDatabase.list<string>('subCategory/Prefix').valueChanges()
@@ -329,7 +330,7 @@ export class CreateFormComponent {
     onSubmit() {
     this.mService.addContactToDb(this.formGroup.value).then(res=>{
         this.mSnackBar.open('Contact added successfully','',{duration:3000})
-
+this.mDialogRef.close()
     })
     }
 }
