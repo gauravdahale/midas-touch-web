@@ -23,6 +23,7 @@ import { TableExportUtil } from 'src/app/shared/tableExportUtil';
 import { TableElement } from 'src/app/shared/TableElement';
 import { formatDate } from '@angular/common';
 import { CreateFormComponent } from './create-form/create-form.component';
+import {AngularFireDatabase} from "@angular/fire/compat/database";
 
 @Component({
   selector: 'app-contacts',
@@ -49,11 +50,13 @@ export class ContactsComponent
   selection = new SelectionModel<Contacts>(true, []);
   id?: number;
   contacts?: Contacts;
+
   constructor(
     public httpClient: HttpClient,
     public dialog: MatDialog,
     public contactsService: ContactsService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+
   ) {
     super();
   }

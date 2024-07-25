@@ -1,1 +1,60 @@
-/* You can add global styles to this file, and also import other style files */
+@use 'sass:map';
+@use '@angular/material' as mat;
+/* Importing Bootstrap SCSS file. */
+//@import 'bootstrap/scss/bootstrap';
+@include mat.core();
+
+
+$primary: mat.define-palette(mat.$blue-palette); //Definging primary color
+$button-primary: mat.define-palette(mat.$teal-palette); //Definging primary color
+
+$secondary: mat.define-palette(mat.$amber-palette); //Defining accent color
+$button-secondary: mat.define-palette(mat.$amber-palette); //Defining accent color
+
+$theme: mat.define-light-theme((
+        color:(primary:$primary, accent:$secondary),
+        density:-2
+));
+
+$color-config: mat.get-color-config($theme);
+
+// Get the primary color palette from the color-config.
+$primary-palette: map.get($color-config, 'primary');
+$warn-palette: map.get($color-config, 'warn');
+$colorPrimary:mat.get-color-from-palette($primary-palette);
+$colorWarn:mat.get-color-from-palette($warn-palette);
+
+
+
+$button-theme: mat.define-light-theme((
+        //color:(primary:$button-primary, accent:$button-secondary),
+        density:-2
+));
+
+// Apply the dark theme by default
+//@include mat.core-theme($theme);
+//@include mat.all-component-themes($theme);
+@include mat.button-theme($button-theme);
+@include mat.button-density(-1);
+
+//.smaller-form-field {
+//  height: 35px;
+//}
+//  .mat-form-field-wrapper {
+//    padding: 5px 10px;
+//  }
+//
+//  .mat-form-field-label {
+//    font-size: 12px;
+//  }
+//
+//  .mat-input-element {
+//    padding: 5px;
+//    font-size: 12px;
+//  }
+mat-form-field {
+  @include mat.form-field-density(-4); // Adjust the density value as needed
+}
+.rounded-button {
+  border-radius: 20px;
+}
