@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { MatDialog,MatDialogConfig } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { Contacts } from './contacts.model';
+//import { Contacts } from './contacts.model';
 import { DataSource } from '@angular/cdk/collections';
 import {
   MatSnackBar,
@@ -25,7 +25,8 @@ import { formatDate } from '@angular/common';
 import { CreateFormComponent } from './create-form/create-form.component';
 import {AngularFireDatabase} from "@angular/fire/compat/database";
 import {MatTableDataSource} from "@angular/material/table";
-import {AngularFirestore} from "@angular/fire/compat/firestore";
+import {Contacts} from "./contacts.model";
+import {PurchaseFormComponent} from "./purchase-form/purchase-form.component";
 
 @Component({
   selector: 'app-contacts',
@@ -56,7 +57,6 @@ export class ContactsComponent
     public httpClient: HttpClient,
     public dialog: MatDialog,
     public contactsService: ContactsService,
-    private mFirestore:AngularFirestore,
     private snackBar: MatSnackBar,
 
   ) {
@@ -80,18 +80,20 @@ export class ContactsComponent
    })
   }
   detailsCall(row: Contacts) {
-
     let tempDirection: Direction;
     if (localStorage.getItem('isRtl') === 'true') {
       tempDirection = 'rtl';
     } else {
       tempDirection = 'ltr';
     }
-    this.dialog.open(ViewContactComponent, {
-      data:row,
+    this.dialog.open(FormComponent, {
+      data: {
+        contacts: row,
+        action: 'details',
+      },
       direction: tempDirection,
-      height: '80%',
-      width: '80%',
+      height: '75%',
+      width: '35%',
     });
   }
   toggleStar(row: Contacts) {
@@ -141,8 +143,8 @@ const dialogRef= this.dialog.open(CreateFormComponent,{
   width:"180%"
 });
 
-
 }
+
 
   // deleteItem(row: Contacts) {
   //   this.id = row.id;
@@ -226,21 +228,8 @@ const dialogRef= this.dialog.open(CreateFormComponent,{
       panelClass: colorName,
     });
   }
-}
-
-
-function commands(){
-
-  // To Read a list of data from firestore
-
-
-
-
 
 }
-
-
-
 
 
 

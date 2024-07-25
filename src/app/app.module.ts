@@ -37,6 +37,8 @@ import {getFunctions, provideFunctions} from "@angular/fire/functions";
 import {environment} from "../environments/environment";
 import {TypesComponent} from "./contacts/types/types/types.component";
 import {PrettyJsonModule} from "@stg-247/ngx-prettyjson";
+import {ContactsModule} from "./contacts/contacts.module";
+
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -55,6 +57,7 @@ export function createTranslateLoader(http: HttpClient) {
         EditLocationComponent,
         EditLanguangeComponent,
         EditTagComponent,
+
 
     ],
     imports: [
@@ -82,6 +85,7 @@ export function createTranslateLoader(http: HttpClient) {
         }),
         CoreModule,
         SharedModule,
+        ContactsModule,
 
     ],
     providers: [
