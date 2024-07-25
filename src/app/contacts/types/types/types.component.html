@@ -1,0 +1,71 @@
+<section class="content">
+  <div class="container-fluid">
+  <div class="container mt-3 mb-1 row" style="align-content: baseline" >
+    <mat-form-field class="col-md-6" appearance="outline">
+      <mat-label>Select Type</mat-label>
+      <mat-select #typeSelect [value]="selectedType" (selectionChange)="applyFilter($event)" [(ngModel)]="selectedType"  #input>
+        <mat-option *ngFor="let o of (categoryList$|async)" [value]="o.name">{{o.name}}</mat-option>
+        <!--      <mat-option>2</mat-option>-->
+        <!--      <mat-option>3</mat-option>-->
+        <!--      <mat-option>4</mat-option>-->
+      </mat-select>
+    </mat-form-field>
+    <div class="col-md-2">
+
+      &nbsp;  <button  mat-raised-button color="primary"  (click)="AddType('300ms','300ms')">Add Category</button>
+    </div>
+  </div>
+  <hr>
+  <ng-container *ngIf="this.selectedType!=''" class="mt-3">
+    <div class="row" style="align-content: baseline" [formGroup]="fieldForm">
+      <span >
+        <mat-form-field appearance="outline" #fieldInput >
+          <mat-label>Enter Field</mat-label>
+          <input matInput formControlName="field" >
+        </mat-form-field>
+
+&nbsp;      <button  mat-stroked-button  color="primary" type="submit" (click)="AddTypData()">Add {{selectedType}}</button>
+    </span>
+    </div>
+    <hr>
+  </ng-container>
+  <p></p>
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+        <td mat-cell *matCellDef="let row"> {{row.key}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+        <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+      </ng-container>
+
+      <!-- Fruit Column -->
+      <ng-container matColumnDef="Actions">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
+        <td mat-cell *matCellDef="let row">
+          <!--        <button mat-raised-button color="primary">Add  </button>&nbsp;-->
+          <button  mat-raised-button color="primary" (click)="Delete(row.key)">Delete </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+      </tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+  </div>
+
+  </div>
+</section>
+

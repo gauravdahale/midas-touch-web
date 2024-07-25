@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { Contacts } from './contacts.model';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { UnsubscribeOnDestroyAdapter } from '../shared/UnsubscribeOnDestroyAdapter';
+import {AngularFirestore} from "@angular/fire/compat/firestore";
 @Injectable()
 export class ContactsService extends UnsubscribeOnDestroyAdapter {
   private readonly API_URL = 'assets/data/contacts.json';
@@ -10,7 +11,8 @@ export class ContactsService extends UnsubscribeOnDestroyAdapter {
   dataChange: BehaviorSubject<Contacts[]> = new BehaviorSubject<Contacts[]>([]);
   // Temporarily stores data from dialogs
   dialogData!: Contacts;
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient,
+              private readonly mFirestore:AngularFirestore) {
     super();
   }
   get data(): Contacts[] {
@@ -63,5 +65,8 @@ export class ContactsService extends UnsubscribeOnDestroyAdapter {
          // error code here
       }
     );*/
+  }
+  addContactToDb(contact:any){
+   return  this.mFirestore.collection('contacts').add(contact)
   }
 }

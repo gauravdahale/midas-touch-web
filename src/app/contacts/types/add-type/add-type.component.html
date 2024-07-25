@@ -1,0 +1,14 @@
+<div class="container">
+
+  <h1 class="rounded text-center" >Add Type</h1>
+
+  <form [formGroup]="form" class="text-center">
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Enter  Name</mat-label>
+        <input matInput type="text" formControlName="name" #inputField>
+      </mat-form-field>
+    </div>
+    <button mat-raised-button color="primary" (click)="AddTypeList()">Submit</button>
+  </form>
+</div>

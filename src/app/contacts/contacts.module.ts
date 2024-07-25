@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, TitleCasePipe} from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdvanceTableRoutingModule } from './contacts-routing.module';
 import { ContactsComponent } from './contacts.component';
@@ -27,37 +27,41 @@ import { ContactsService } from './contacts.service';
 import { ComponentsModule } from '../shared/components/components.module';
 import { CreateFormComponent } from './create-form/create-form.component';
 import { EditReferenceComponent } from './edit-reference/edit-reference.component';
+import {TypesComponent} from "./types/types/types.component";
+import {AddTypeComponent} from "./types/add-type/add-type.component";
+import {PrettyJsonModule} from "@stg-247/ngx-prettyjson";
  
 
 
 @NgModule({
-  declarations: [ContactsComponent, contactForm, DeleteComponent, CreateFormComponent, EditReferenceComponent],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    AdvanceTableRoutingModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSnackBarModule,
-    MatButtonModule,
-    MatIconModule,
-    MatRadioModule,
-    MatSelectModule,
-    MatCheckboxModule,
-    MatCardModule,
-    MatDatepickerModule,
-    MatDialogModule,
-    MatSortModule,
-    MatToolbarModule,
-    MatMenuModule,
-    MatProgressSpinnerModule,
-    ComponentsModule,
-    
-  ],
-  providers: [ContactsService], 
+  declarations: [ContactsComponent, contactForm, DeleteComponent, CreateFormComponent, EditReferenceComponent,TypesComponent,AddTypeComponent],
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        AdvanceTableRoutingModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSnackBarModule,
+        MatButtonModule,
+        MatIconModule,
+        MatRadioModule,
+        MatSelectModule,
+        MatCheckboxModule,
+        MatCardModule,
+        MatDatepickerModule,
+        MatDialogModule,
+        MatSortModule,
+        MatToolbarModule,
+        MatMenuModule,
+        MatProgressSpinnerModule,
+        ComponentsModule,
+        PrettyJsonModule,
+
+    ],
+  providers: [ContactsService,TitleCasePipe],
 
 })
 export class ContactsModule {}
