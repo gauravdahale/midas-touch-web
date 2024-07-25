@@ -1,19 +1,18 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import { Contacts } from './contacts.model';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import {  HttpErrorResponse } from '@angular/common/http';
 import { UnsubscribeOnDestroyAdapter } from '../shared/UnsubscribeOnDestroyAdapter';
 import {AngularFirestore} from "@angular/fire/compat/firestore";
 @Injectable()
-export class ContactsService extends UnsubscribeOnDestroyAdapter {
+export class ContactsService  {
   private readonly API_URL = 'assets/data/contacts.json';
   isTblLoading = true;
   dataChange: BehaviorSubject<Contacts[]> = new BehaviorSubject<Contacts[]>([]);
   // Temporarily stores data from dialogs
   dialogData!: Contacts;
-  constructor(private httpClient: HttpClient,
-              private readonly mFirestore:AngularFirestore) {
-    super();
+  constructor( private  mFirestore:AngularFirestore) {
+
   }
   get data(): Contacts[] {
     return this.dataChange.value;
@@ -22,17 +21,9 @@ export class ContactsService extends UnsubscribeOnDestroyAdapter {
     return this.dialogData;
   }
   /** CRUD METHODS */
-  getAllContactss(): void {
-    this.subs.sink = this.httpClient.get<Contacts[]>(this.API_URL).subscribe(
-      (data) => {
-        this.isTblLoading = false;
-        this.dataChange.next(data);
-      },
-      (error: HttpErrorResponse) => {
-        this.isTblLoading = false;
-        console.log(error.name + ' ' + error.message);
-      }
-    );
+  getAllContacts(): Observable<any[]> {
+    return this.mFirestore.collection<any>('contacts').valueChanges()
+
   }
   addContacts(contacts: Contacts): void {
     this.dialogData = contacts;
