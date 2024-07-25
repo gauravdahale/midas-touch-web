@@ -4,6 +4,7 @@ import { Page404Component } from './authentication/page404/page404.component';
 import { AuthGuard } from './core/guard/auth.guard';
 import { AuthLayoutComponent } from './layout/app-layout/auth-layout/auth-layout.component';
 import { MainLayoutComponent } from './layout/app-layout/main-layout/main-layout.component';
+import {PurchaseFormComponent} from "./contacts/purchase-form/purchase-form.component";
 
 
 const routes: Routes = [
@@ -12,6 +13,7 @@ const routes: Routes = [
     component: MainLayoutComponent,
     canActivate: [AuthGuard],
     children: [
+
       { path: '', redirectTo: '/authentication/signin', pathMatch: 'full' },
       {
         path: 'dashboard',
@@ -119,6 +121,7 @@ const routes: Routes = [
       ),
   },
   { path: '**', component: Page404Component },
+
 ];
 
 @NgModule({

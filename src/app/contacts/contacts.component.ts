@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { MatDialog,MatDialogConfig } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { Contacts } from './contacts.model';
+//import { Contacts } from './contacts.model';
 import { DataSource } from '@angular/cdk/collections';
 import {
   MatSnackBar,
@@ -25,6 +25,8 @@ import { formatDate } from '@angular/common';
 import { CreateFormComponent } from './create-form/create-form.component';
 import {AngularFireDatabase} from "@angular/fire/compat/database";
 import {MatTableDataSource} from "@angular/material/table";
+import {Contacts} from "./contacts.model";
+import {PurchaseFormComponent} from "./purchase-form/purchase-form.component";
 
 @Component({
   selector: 'app-contacts',
@@ -140,9 +142,9 @@ const dialogRef= this.dialog.open(CreateFormComponent,{
   height:'100%',
   width:"180%"
 });
-  
 
 }
+
 
   // deleteItem(row: Contacts) {
   //   this.id = row.id;
@@ -226,5 +228,8 @@ const dialogRef= this.dialog.open(CreateFormComponent,{
       panelClass: colorName,
     });
   }
+
 }
+
+
 

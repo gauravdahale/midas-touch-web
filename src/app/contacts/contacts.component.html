@@ -1,3 +1,4 @@
+
 <section class="content">
   <div class="container-fluid">
     <div class="row">
@@ -23,6 +24,8 @@
 <!--                    <button mat-raised-button class="create" (click)="onCreate()">Create Contact</button>-->
 
 <!--                  </div>-->
+
+
 
 
                   <div class="right">
@@ -115,13 +118,13 @@
                         <mat-header-cell *matHeaderCellDef mat-sort-header>Reference
                         </mat-header-cell>
                         <mat-cell *matCellDef="let row" class="column-nowrap">
-                          <span class="truncate-text"><span class="mobile-label">Reference:</span>{{row.refrence}}</span>
+                          <span class="truncate-text"><span class="mobile-label">Reference:</span>{{row.reference}}</span>
                         </mat-cell>
                       </ng-container>
                       <ng-container matColumnDef="taq">
                         <mat-header-cell *matHeaderCellDef mat-sort-header>TAq
                         </mat-header-cell>
-                        <mat-cell *matCellDef="let row"><span class="mobile-label">Taq:</span> {{row.note}}
+                        <mat-cell *matCellDef="let row"><span class="mobile-label">Taq:</span> {{row.notes}}
                         </mat-cell>
                       </ng-container>
                       <ng-container matColumnDef="personal">
@@ -178,4 +181,8 @@
       </div>
     </div>
   </div>
+
 </section>
+
+
+

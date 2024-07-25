@@ -30,38 +30,44 @@ import { EditReferenceComponent } from './edit-reference/edit-reference.componen
 import {TypesComponent} from "./types/types/types.component";
 import {AddTypeComponent} from "./types/add-type/add-type.component";
 import {PrettyJsonModule} from "@stg-247/ngx-prettyjson";
- 
+import { PurchaseFormComponent } from './purchase-form/purchase-form.component';
+
+
+
 
 
 @NgModule({
-  declarations: [ContactsComponent, contactForm, DeleteComponent, CreateFormComponent, EditReferenceComponent,TypesComponent,AddTypeComponent],
-    imports: [
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        AdvanceTableRoutingModule,
-        MatTableModule,
-        MatPaginatorModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatSnackBarModule,
-        MatButtonModule,
-        MatIconModule,
-        MatRadioModule,
-        MatSelectModule,
-        MatCheckboxModule,
-        MatCardModule,
-        MatDatepickerModule,
-        MatDialogModule,
-        MatSortModule,
-        MatToolbarModule,
-        MatMenuModule,
-        MatProgressSpinnerModule,
-        ComponentsModule,
-        PrettyJsonModule,
+  declarations: [ContactsComponent, contactForm, DeleteComponent, CreateFormComponent, EditReferenceComponent, TypesComponent, AddTypeComponent, PurchaseFormComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AdvanceTableRoutingModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSnackBarModule,
+    MatButtonModule,
+    MatIconModule,
+    MatRadioModule,
+    MatSelectModule,
+    MatCheckboxModule,
+    MatCardModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatSortModule,
+    MatToolbarModule,
+    MatMenuModule,
+    MatProgressSpinnerModule,
+    ComponentsModule,
+    PrettyJsonModule,
 
-    ],
-  providers: [ContactsService,TitleCasePipe],
+  ],
+  providers: [ContactsService, TitleCasePipe],
 
+  exports: [
+    PurchaseFormComponent
+  ]
 })
 export class ContactsModule {}
