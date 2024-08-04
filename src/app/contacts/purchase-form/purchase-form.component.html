@@ -1,0 +1,440 @@
+
+ <section class="content">
+   <div class="container-fluid">
+
+       <mat-card>
+         <mat-icon class="close-icon" mat-dialog-close>close</mat-icon>
+         <mat-card-content style="margin-top: 10px">
+           <!------------Purchase/Redemption------------>
+           <div>
+             <span>Purchase/Redemption</span>
+           </div>
+
+           <!----------------NAME---------------------->
+           <div>
+             <span>Name:</span>
+           </div>
+
+           <!-------------------------PAN NO ---------------------->
+           <div>
+             <span>Pan No:</span>
+           </div>
+           <form [formGroup]="purchaseForm" (ngSubmit)="purchaseSubmit()" style="margin-top: 20px;">
+             <div class="row">
+               <!--------------------TRANSACTION TYPE------------------------>
+               <div class="col-md-6">
+                 <mat-form-field appearance="outline" floatLabel="always" class="transfield">
+                   <mat-label>Transaction Type</mat-label>
+                   <mat-select formControlName="transaction" required>
+                     <mat-option value="Canbased">CAN BASED PURCHASE</mat-option>
+                     <mat-option value="Foliobased">FOLIO BASE PURCHASE</mat-option>
+                     <mat-option value="Canbasedredem">CAN BASED REDEMPTION</mat-option>
+                     <mat-option value="Foliobasedredem">FOLIO BASED REDEMPTION</mat-option>
+                   </mat-select>
+                 </mat-form-field>
+               </div>
+
+               <div class="col-md-6">
+                 <mat-form-field appearance="outline" floatLabel="always" class="transfield">
+                   <mat-label>Submission Date</mat-label>
+                   <input matInput [matDatepicker]="submit" placeholder="Submission Date" formControlName="submitDate">
+                   <mat-datepicker-toggle [for]="submit" matIconSuffix> </mat-datepicker-toggle>
+                   <mat-datepicker #submit></mat-datepicker>
+                 </mat-form-field>
+               </div>
+             </div>
+
+             <!----------------------FOLIO BASED--------------------->
+             <div class="row" *ngIf="purchaseForm.get('transaction')?.value===('Foliobased')">
+               <div class="col-md-4"  >
+                 <mat-form-field appearance="outline" floatLabel="always" class="transfield">
+                   <mat-label>Major/Minor</mat-label>
+                   <mat-select formControlName="majMinFolioBase">
+                     <mat-option *ngFor="let m of Major" [value]="m">{{m}}</mat-option>
+                   </mat-select>
+                 </mat-form-field>
+               </div>
+
+               <div class="col-md-4" >
+                 <mat-form-field appearance="outline" floatLabel="always" class="transfield">
+                   <mat-label>Folio No</mat-label>
+                   <input matInput formControlName="folioNoFolioBased">
+                 </mat-form-field>
+               </div>
+
+               <div class="col-md-4" *ngIf="purchaseForm.get('majMinFolioBase')?.value===('Major')">
+                 <mat-form-field appearance="outline" floatLabel="always" class="transfield">
+                   <mat-label>Select Pan</mat-label>
+                   <mat-select  formControlName="selectPan" placeholder="Select Pan">
+                     <mat-option *ngFor="let pan of selPan" [value]="pan">{{pan}}</mat-option>
+                   </mat-select>
+                 </mat-form-field>
+               </div>
+
+               <div class="col-md-4" *ngIf="purchaseForm.get('majMinFolioBase')?.value===('Minor')">
+                 <mat-form-field appearance="outline" floatLabel="always" class="transfield">
+                   <mat-label>Select Minor</mat-label>
+                   <mat-select  formControlName="Select Minor" placeholder="Select Minor">
+                     <mat-option ></mat-option>
+                   </mat-select>
+                 </mat-form-field>
+               </div>
+
+
+             </div>
+
+             <!---------------------------FOLIO BASED REDEM------------------------>
+
+             <div class="row" *ngIf="purchaseForm.get('transaction')?.value===('Foliobasedredem')">
+               <div class="col-md-5" >
+                 <mat-form-field appearance="outline" floatLabel="always" class="transfield">
+                   <mat-label>Major/Minor</mat-label>
+                   <mat-select formControlName="folioBasedRedem">
+                     <mat-option></mat-option>
+                   </mat-select>
+                 </mat-form-field>
+               </div>
+
+               <div class="col-md-7" >
+                 <mat-form-field appearance="outline" floatLabel="always" class="transfield">
+                   <mat-label>Folio No</mat-label>
+                   <input matInput formControlName="folioNoFolioBasedRedem">
+                 </mat-form-field>
+               </div>
+             </div>
+
+
+             <!-----------------------------CANBASED-------------------------------->
+
+             <div class="row" *ngIf="purchaseForm.get('transaction')?.value===('Canbased')">
+               <div class="col-md-7" >
+                 <mat-form-field appearance="outline" floatLabel="always" class="transfield">
+                   <mat-label>Select Can</mat-label>
+                   <mat-select placeholder="Select Can" formControlName="selectCanBased">
+                     <mat-option *ngFor="let can of SelectCan" [value]="can">{{can}}</mat-option>
+                   </mat-select>
+                 </mat-form-field>
+               </div>
+
+               <div class="col-md-5" >
+                 <mat-form-field appearance="outline" floatLabel="always" class="transfield">
+                   <mat-label>Main Agent</mat-label>
+                   <input matInput formControlName="mainAgentCanBased">
+                 </mat-form-field>
+               </div>
+             </div>
+
+
+             <!-----------------------------------CAN BASEDE REDEM----------------------------------->
+
+
+             <div class="row" *ngIf="purchaseForm.get('transaction')?.value===('Canbasedredem')">
+               <div class="col-md-7" >
+                 <mat-form-field appearance="outline" floatLabel="always" class="transfield">
+                   <mat-label>Select Can</mat-label>
+                   <mat-select placeholder="Select Can" formControlName="selCanBasedRedem">
+                     <mat-option *ngFor="let cans of SelectCan" [value]="cans">{{cans}}</mat-option>
+                   </mat-select>
+                 </mat-form-field>
+               </div>
+
+               <div class="col-md-5" >
+                 <mat-form-field appearance="outline" floatLabel="always" class="transfield">
+                   <mat-label>Main Agent</mat-label>
+                   <input matInput formControlName="mainAgentCanBasedRedem">
+                 </mat-form-field>
+               </div>
+             </div>
+
+             <!------------------------------GROUP NO ----------------------------->
+
+
+             <div class="row">
+               <div class="col-md-6" >
+                 <mat-form-field appearance="outline" floatLabel="always" class="transfield">
+                   <mat-label>Group No</mat-label>
+                   <input matInput formControlName="groupNo">
+                 </mat-form-field>
+               </div>
+
+               <div class="col-md-6" >
+                 <mat-form-field appearance="outline" floatLabel="always" class="transfield">
+                   <mat-label>Investor Type</mat-label>
+                   <mat-select placeholder="Select Investor" formControlName="investor">
+                     <mat-option *ngFor="let invest of Investor" [value]="invest">{{invest}}</mat-option>
+                   </mat-select>
+                 </mat-form-field>
+               </div>
+             </div>
+
+
+             <!------------------------------CAN BASED PAYMENT------------------------->
+             <div class="row" *ngIf="purchaseForm.get('transaction')?.value===('Canbased')">
+               <mat-form-field class="transfield" appearance="outline" floatLabel="always">
+                 <mat-label>Payment</mat-label>
+                 <input matInput hidden>
+
+                 <!-------------------SELECT BANK------------------->
+                 <div class="row" formGroupName="canBasedPayment">
+                   <div class="col-md-4">
+                     <mat-form-field class="transfield" appearance="outline" floatLabel="always">
+                       <mat-label>Select Bank</mat-label>
+                       <mat-select placeholder="Select Bank" formControlName="bankCanBased">
+                         <mat-option></mat-option>
+                       </mat-select>
+                     </mat-form-field>
+                   </div>
+
+
+                   <!-------------------PAYMENT DATE------------------->
+
+                   <div class="col-md-4">
+                     <mat-form-field class="transfield" appearance="outline" floatLabel="always">
+                       <mat-label>Payment Date</mat-label>
+                       <input matInput formControlName="payDateCanBased">
+
+                     </mat-form-field>
+                   </div>
+
+                   <!-------------------PAYMENT TYPE------------------->
+                   <div class="col-md-4">
+                     <mat-form-field class="transfield" appearance="outline" floatLabel="always">
+                       <mat-label>Payment Type</mat-label>
+                       <mat-select placeholder="Select Payment Type" formControlName="payTypeCanBased">
+                         <mat-option *ngFor="let paymentType of PaymentType" [value]="paymentType">{{paymentType}}</mat-option>
+                       </mat-select>
+                     </mat-form-field>
+                   </div>
+
+                   <!-------------------PAYMENT REFERENCE NO------------------->
+
+                   <div class="col-md-4">
+                     <mat-form-field class="transfield" appearance="outline" floatLabel="always">
+                       <mat-label>Payment Reference No</mat-label>
+                       <input matInput formControlName="payRefCanBased">
+                     </mat-form-field>
+                   </div>
+
+                   <!-------------------AMOUNT------------------->
+
+                   <div class="col-md-4">
+                     <mat-form-field class="transfield" appearance="outline" floatLabel="always">
+                       <mat-label>Amount</mat-label>
+                       <input matInput placeholder="Amount" formControlName="amountCanBased">
+                     </mat-form-field>
+                   </div>
+
+                 </div>
+               </mat-form-field>
+             </div>
+
+             <!--------------------------------------FOLIO BASED PAYMENT-------------------->
+             <div class="row" *ngIf="purchaseForm.get('transaction')?.value===('Foliobased')">
+               <mat-form-field class="transfield" appearance="outline" floatLabel="always">
+                 <mat-label>Payment</mat-label>
+                 <input matInput hidden>
+
+                 <!-------------------SELECT BANK------------------->
+                 <div class="row" formGroupName="folioBasedPayment">
+                   <div class="col-md-4">
+                     <mat-form-field class="transfield" appearance="outline" floatLabel="always">
+                       <mat-label>Select Bank</mat-label>
+                       <mat-select placeholder="Select Bank" formControlName="bankFolioBased" style="padding-right: 20px">
+                         <mat-option></mat-option>
+                       </mat-select>
+                     </mat-form-field>
+                   </div>
+
+
+                   <!-------------------PAYMENT DATE------------------->
+
+                   <div class="col-md-4">
+                     <mat-form-field class="transfield" appearance="outline" floatLabel="always">
+                       <mat-label>Payment Date</mat-label>
+                       <input matInput formControlName="payDateFolioBased" [matDatepicker]="paymentdate" >
+                       <mat-datepicker-toggle [for]="paymentdate" matIconSuffix></mat-datepicker-toggle>
+                       <mat-datepicker #paymentdate></mat-datepicker>
+
+                     </mat-form-field>
+                   </div>
+
+                   <!-------------------PAYMENT TYPE------------------->
+                   <div class="col-md-4">
+                     <mat-form-field class="transfield" appearance="outline" floatLabel="always">
+                       <mat-label>Payment Type</mat-label>
+                       <mat-select placeholder="Select Payment Type" formControlName="payTypeFolioBased" style="padding-right: 20px">
+                         <mat-option *ngFor="let paymentType of PaymentType" [value]="paymentType">{{paymentType}}</mat-option>
+                       </mat-select>
+                     </mat-form-field>
+                   </div>
+
+                   <!-------------------PAYMENT REFERENCE NO------------------->
+
+                   <div class="col-md-4">
+                     <mat-form-field class="transfield" appearance="outline" floatLabel="always">
+                       <mat-label>Payment Reference No</mat-label>
+                       <input matInput formControlName="payRefFolioBased">
+                     </mat-form-field>
+                   </div>
+
+                   <!-------------------AMOUNT------------------->
+
+                   <div class="col-md-4">
+                     <mat-form-field class="transfield" appearance="outline" floatLabel="always">
+                       <mat-label>Amount</mat-label>
+                       <input matInput placeholder="Amount" formControlName="amountFolioBased">
+                     </mat-form-field>
+                   </div>
+
+                 </div>
+               </mat-form-field>
+             </div>
+
+
+             <!------------------------CAN BASED REDEM BANK SELECT-------------------------------------->
+             <div class="row" *ngIf="purchaseForm.get('transaction')?.value===('Canbasedredem')">
+               <mat-form-field appearance="outline" floatLabel="always">
+                 <mat-label>Select Bank</mat-label>
+                 <input matInput hidden="">
+                 <mat-select formControlName="bankCanBasedRedem">
+                   <mat-option></mat-option>
+                 </mat-select>
+               </mat-form-field>
+             </div>
+
+             <!-----------------------FOLIO BASED REDEM BANK SELECT------------------------------------>
+             <div class="row" *ngIf="purchaseForm.get('transaction')?.value===('Foliobasedredem')">
+               <mat-form-field appearance="outline" floatLabel="always">
+                 <mat-label>Select Bank</mat-label>
+                 <input matInput hidden="">
+                 <mat-select formControlName="bankFolioBasedRedem">
+                   <mat-option></mat-option>
+                 </mat-select>
+               </mat-form-field>
+             </div>
+
+
+             <!-----------------------------SELECT CAN BASED CAN FIELD SELECT----------------------------------------------->
+             <div >
+               <mat-form-field floatLabel="always" appearance="outline" class="transfield">
+                 <mat-label>Scheme</mat-label>
+                 <input matInput hidden>
+
+                 <div class="row" >
+
+                   <!-----------------------Scheme Name-------------------------->
+                   <div class="col-md-4">
+                     <mat-form-field appearance="outline" floatLabel="always" class="transfield">
+                       <mat-label>Scheme Name</mat-label>
+                       <mat-select placeholder="Scheme Name" formControlName="schemeName">
+                         <mat-option *ngFor="let scheme of selSchemName" [value]="scheme">{{scheme}}</mat-option>
+                       </mat-select>
+                       <mat-icon matIconSuffix>close</mat-icon>
+
+                     </mat-form-field>
+                   </div>
+
+
+                   <!-----------------------Folio No---------------------------->
+                   <div class="col-md-3">
+                     <mat-form-field appearance="outline" class="transfield">
+                       <mat-label>Folio No</mat-label>
+                       <input matInput formControlName="FolioNo">
+                     </mat-form-field>
+                   </div>
+
+                   <!------------------------Specific Unit--------------------------->
+                   <div class="col-md-3">
+                     <mat-form-field appearance="outline" class="transfield" >
+                       <mat-label>Specific Unit</mat-label>
+                       <input matInput formControlName="specificUnit">
+                     </mat-form-field>
+                   </div>
+
+                   <!----------------------------Amount-------------------------------->
+                   <div class="col-md-2">
+                     <mat-form-field appearance="outline" class="transfield" style="padding-right: 10px">
+                       <mat-label>Amount</mat-label>
+                       <input matInput formControlName="schemeamt">
+                     </mat-form-field>
+                   </div>
+
+                   <!-----------------------All Units--------------------------------->
+                   <div class="col-md-2" class="units">
+                     <mat-checkbox formControlName="allunits">All Units</mat-checkbox>
+                   </div>
+
+                   <!-------------------------------Add Button------------------------>
+                   <div class="col-md-2">
+                     <button mat-raised-button color="primary" class="addbtn" (click)="addbankscheme()">ADD</button>
+                   </div>
+                 </div>
+
+
+
+                 <div class="row">
+                   <div *ngFor="let item of schemeCanBasedPurc.controls;let i=index">
+                     <mat-card style="padding: 10px;background-color:aliceblue">
+                       <div class="edit">
+                         <button mat-icon-button [matMenuTriggerFor]="menu">
+                           <mat-icon>more_vert</mat-icon>
+                         </button>
+                         <div class="row">
+                           <mat-menu #menu=matMenu>
+                             <div col-md-6>
+                               <button mat-menu-item>
+                                 <mat-icon>edit</mat-icon>
+                                 <span>Edit</span>
+                               </button>
+                             </div>
+                             <div col-md-6>
+                               <button mat-menu-item>
+                                 <mat-icon (click)="deleteScheme(i)">delete</mat-icon>
+                                 <span>Delete</span>
+                               </button>
+                             </div>
+                           </mat-menu>
+                         </div>
+
+                       </div>
+                       <mat-card-content>
+                         <p><strong>Scheme Name:</strong> {{item.get('schemeName')?.value}}</p>
+                         <p><strong>Folio No:</strong> {{ item.get('FolioNo') }}</p>
+                         <p><strong>Specific Unit:</strong> {{ item.get('specificUnit') }}</p>
+                         <p><strong>Amount:</strong> {{ item.get('schemeAmt')  }}</p>
+                         <p><strong>All Units:</strong> {{item.get('allUnits') ? 'Yes' : 'No' }}</p>
+                       </mat-card-content>
+
+                     </mat-card>
+
+                   </div>
+
+                 </div>
+
+
+               </mat-form-field>
+             </div>
+
+             <!-----------------------------SELECT CAN BASED REDEM CAN FIELD SELECT----------------------------------------------->
+
+
+
+
+
+
+
+
+             <!------------------------------Submit & close Button------------------------------->
+
+             <div class="row" class="mainbtn">
+               <button mat-raised-button color="primary" class="btnsub"  >Submit</button>
+               <button mat-raised-button color="primary" class="btnclose" >Close</button>
+             </div>
+
+           </form>
+         </mat-card-content>
+       </mat-card>
+   </div>
+ </section>
+
+

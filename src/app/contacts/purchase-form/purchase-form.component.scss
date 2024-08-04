@@ -1,0 +1,51 @@
+
+
+.transfield{
+  width: 100%;
+}
+
+.btnsubmit{
+  border-radius: 25px;
+  //background-color: rgb(231, 12, 12);
+  width: 100px;
+  margin-top: 10px;
+  margin-left: 48%;
+
+}
+
+.btnsub{
+  width: 20%;
+  border-radius: 25px;
+  margin: 10px;
+}
+.btnclose{
+  width: 20%;
+  border-radius: 25px;
+  margin: 10px;
+
+}
+.mainbtn{
+  padding-left: 530px;
+  margin: 20px;
+}
+
+.units{
+  width: 10%;
+}
+.addbtn{
+  margin-top: 3px;
+}
+.edit{
+  padding-left: 95%;
+
+}
+
+
+.close-icon {
+  position: absolute;
+  right: 8px; /* Adjust positioning as needed */
+  margin-top: 25px;
+  margin-right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
