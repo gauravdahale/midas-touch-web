@@ -1,628 +1,462 @@
 <mat-card class="cardview">
-  <mat-card-title class="title">Create Contact</mat-card-title>
-  <mat-icon class="close-icon" mat-dialog-close>close</mat-icon>
-  <mat-card-content>
-    <div class="row">
-      <div class="personal">
-        <button mat-button class="circlebtn"></button>
-        <mat-form-field appearance="outline" floatLabel="always">
-          <mat-label>Prefix</mat-label>
-          <mat-select placeholder="Prefix">
-            <mat-form-field appearance="outline" class="search"> <input matInput
-                type="text" placeholder="Search">
-              <mat-icon matPrefix>search</mat-icon>
+    <mat-card-title class="title">Create Contact</mat-card-title>
+    <mat-icon class="close-icon" mat-dialog-close>close</mat-icon>
+    <mat-card-content>
+
+        <div class="row" [formGroup]="formGroup">
+            <!--        <button mat-button class="circlebtn"></button>-->
+            <!*--------------------------------------------- Prefix--------------------------------------------->
+            <mat-form-field appearance="outline" floatLabel="always" class="col-md-3">
+                <mat-label>Prefix</mat-label>
+                <mat-select placeholder="Prefix" formControlName="prefix">
+                    <mat-option *ngFor="let prefix of prefixes$|async" [value]="prefix">{{prefix}}</mat-option>
+                </mat-select>
+                <!--          <mat-icon matIconSuffix style="color: red;">close</mat-icon>-->
             </mat-form-field>
-            <mat-option *ngFor="let prefix of Prefix" [value]="prefix">
-              {{prefix}}
-            </mat-option>
-          </mat-select>
-          <mat-icon matIconSuffix style="color: red;">close</mat-icon>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" floatLabel="auto">
-          <mat-label>Given Name</mat-label>
-          <input matInput required>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-          <mat-label>Middle Name</mat-label>
-          <input matInput>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-          <mat-label>Family Name</mat-label>
-          <input matInput>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" floatLabel="always">
-          <mat-label>Reference</mat-label>
-          <mat-select placeholder="Select Reference">
-            <mat-form-field appearance="outline" class="search"> <input matInput
-                type="text" placeholder="Search">
-              <mat-icon matPrefix>search</mat-icon>
+            <!*--------------------------------------------- Given Name--------------------------------------------->
+            <mat-form-field appearance="outline" floatLabel="auto" class="col-md-3">
+                <mat-label>Given Name</mat-label>
+                <input matInput required formControlName="firstName" (blur)="onBlur(firstName)">
             </mat-form-field>
-            <mat-option
-              *ngFor="let reference of Reference">{{reference}}</mat-option>
-          </mat-select>
-          <mat-icon matIconSuffix style="color: red;">close</mat-icon>
-        </mat-form-field>
-
-        <button mat-button class="icons"
-          (click)="editRef()"><mat-icon>edit_note</mat-icon></button>
-      </div>
-    </div>
-
-    <!--Second Row-->
-    <div class="row" class="personal">
-      <mat-form-field appearance="outline" floatLabel="always">
-        <mat-label>Events</mat-label>
-        <mat-select placeholder="Select Events">
-          <mat-form-field appearance="outline" class="search"> <input matInput
-              type="text" placeholder="Search">
-            <mat-icon matPrefix>search</mat-icon>
-          </mat-form-field>
-          <mat-option *ngFor="let event of Events">{{event}}</mat-option>
-        </mat-select>
-        <mat-icon matIconSuffix style="color: red;">close</mat-icon>
-
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Significant</mat-label>
-        <input matInput [matDatepicker]="datePicker">
-        <mat-datepicker-toggle [for]="datePicker"
-          matSuffix></mat-datepicker-toggle>
-        <mat-datepicker #datePicker></mat-datepicker>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline" floatLabel="always">
-        <mat-label>Gender</mat-label>
-        <mat-select placeholder="Select Gender">
-          <mat-form-field appearance="outline" class="search"> <input matInput
-              type="text" placeholder="Search">
-            <mat-icon matPrefix>search</mat-icon>
-          </mat-form-field>
-          <mat-option *ngFor="let gender of Gender">{{gender}}</mat-option>
-        </mat-select>
-        <mat-icon matIconSuffix style="color: red;">close</mat-icon>
-      </mat-form-field>
-    </div>
-
-    <!--Third Row-->
-
-    <div class="row" class="personal">
-      <mat-form-field appearance="outline" floatLabel="always">
-        <mat-label>Locations</mat-label>
-        <mat-select placeholder="Select Locations">
-          <mat-form-field appearance="outline" class="search"> <input matInput
-              type="text" placeholder="Search">
-            <mat-icon matPrefix>search</mat-icon>
-          </mat-form-field>
-          <mat-option
-            *ngFor="let location of Location">{{location}}</mat-option>
-        </mat-select>
-        <mat-icon matIconSuffix style="color: red;">close</mat-icon>
-      </mat-form-field>
-
-      <button mat-button class="icons"
-        (click)="editRef()"><mat-icon>edit_note</mat-icon></button>
-
-      <mat-form-field appearance="outline" floatLabel="always">
-        <mat-label>Occupation</mat-label>
-        <mat-select placeholder="Select Occupation">
-          <mat-form-field appearance="outline" class="search"> <input matInput
-              type="text" placeholder="Search">
-            <mat-icon matPrefix>search</mat-icon>
-          </mat-form-field>
-          <mat-option *ngFor="let occupation of Occupation"
-            [value]="occupation">{{occupation}}</mat-option>
-        </mat-select>
-
-        <mat-icon matIconSuffix style="color: red;">close</mat-icon>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline" floatLabel="always">
-        <mat-label>Languange</mat-label>
-        <mat-select placeholder="Select Languange">
-          <mat-form-field appearance="outline" class="search"> <input matInput
-              type="text" placeholder="Search">
-            <mat-icon matPrefix>search</mat-icon>
-          </mat-form-field>
-          <mat-option *ngFor="let languange of Languange"
-            [value]="languange">{{languange}}</mat-option>
-        </mat-select>
-        <mat-icon matIconSuffix style="color: red;">close</mat-icon>
-      </mat-form-field>
-      <button mat-button class="icons"
-        (click)="editRef()"><mat-icon>edit_note</mat-icon></button>
-      <!-- <button mat-button class="icons"><mat-icon>edit_note</mat-icon></button> -->
-
-      <mat-form-field appearance="outline">
-        <mat-label>Hobby</mat-label>
-        <input matInput>
-      </mat-form-field>
-    </div>
-
-    <!--Fourth Row-->
-    <div class="row" class="personal">
-      <mat-form-field appearance="outline" floatLabel="always">
-        <mat-label>Tag</mat-label>
-        <mat-select placeholder="Select Tag">
-          <mat-form-field appearance="outline" class="search"> <input matInput
-              type="text" placeholder="Search">
-            <mat-icon matPrefix>search</mat-icon>
-          </mat-form-field>
-          <mat-option *ngFor="let tag of Tag">{{tag}}</mat-option>
-        </mat-select>
-        <mat-icon matIconSuffix style="color: red;">close</mat-icon>
-      </mat-form-field>
-
-      <!-- <button mat-button class="icons"><mat-icon>edit_note</mat-icon></button> -->
-      <button mat-button class="icons"
-      (click)="editRef()"><mat-icon>edit_note</mat-icon></button>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Notes</mat-label>
-        <input matInput>
-      </mat-form-field>
-    </div>
-
-    <!--Fifth Row-->
-    <div class="row">
-      <div class="col-md-6">
-        <mat-form-field appearance="outline" floatLabel="always">
-          <mat-label>Groups</mat-label>
-          <input matInput hidden>
-         
-          <div class="row"   style="margin-left: 1px;" >   
-          <mat-form-field appearance="outline" floatLabel="always">
-            <mat-label>Groups</mat-label>
-            <mat-select placeholder="Select Groups">
-              <mat-form-field appearance="outline" class="search"> <input
-                  matInput type="text" placeholder="Search">
-                <mat-icon matPrefix>search</mat-icon>
-              </mat-form-field>
-              <mat-option *ngFor="let group of Group">{{group}}</mat-option>
-            </mat-select>
-          </mat-form-field>
-         </div>
-
-          <div class="row"  style="margin-left: 1px;" >
-            <mat-form-field appearance="outline" floatLabel="always">
-              <mat-label>Mobile</mat-label>
-              <mat-select placeholder="Select Mobile" style="margin-left: 5px;"></mat-select>
+            <!*--------------------------------------------- Middle Name--------------------------------------------->
+            <mat-form-field appearance="outline" class="col-md-3">
+                <mat-label>Middle Name</mat-label>
+                <input matInput formControlName="middleName" (blur)="onBlur(middleName)">
             </mat-form-field>
-          </div>
- 
-         <button   class="btncheck"><mat-icon>check</mat-icon></button>
-          </mat-form-field>
-         
-      </div>
-
-
-      <div class="col-md-6">
-        <mat-form-field appearance="outline" floatLabel="always">
-          <mat-label>Mobile Number & Email Id</mat-label>
-          <input matInput hidden>
-          <div class="personal">
-            <mat-form-field appearance="outline">
-              <mat-label>Email</mat-label>
-              <input matInput>
+            <!*--------------------------------------------- Family Name--------------------------------------------->
+            <mat-form-field appearance="outline" class="col-md-3">
+                <mat-label>Family Name</mat-label>
+                <input matInput formControlName="lastName" (blur)="onBlur(lastName)">
             </mat-form-field>
-            <mat-form-field appearance="outline">
-              <mat-label style="margin-left: 12px;">Select Type</mat-label>
-              <mat-select>
-                <mat-form-field appearance="outline" class="search"> <input matInput
-                  type="text" placeholder="Search">
-                <mat-icon matPrefix>search</mat-icon>
-              </mat-form-field>
-                <mat-option *ngFor="let emailtype of Email" [value]="emailtype">{{emailtype}}</mat-option>
-              </mat-select>
-            </mat-form-field>
-            <button mat-button class="mobn" style="margin-left: 10px;">Add</button>
-          </div>
-
-          <div class="personal">
-            <mat-form-field appearance="outline">
-              <mat-label>Mobile</mat-label>
-              <input matInput>
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-              <mat-label style="margin-left: 12px;"> Select Type</mat-label>
-              <mat-select>
-                <mat-form-field appearance="outline" class="search"> <input matInput
-                  type="text" placeholder="Search">
-                <mat-icon matPrefix>search</mat-icon>
-              </mat-form-field>
-                <mat-option *ngFor="let mobiletype of Mobile" [value]="mobiletype">{{mobiletype}}</mat-option>
-              </mat-select>
-            </mat-form-field>
-            <button mat-button class="mobn" style="margin-left: 10px;">Add</button>
-          </div>
-
-
-         
-        </mat-form-field>
-      </div>
-       </div>
-
-      
-
-    <div class="row">
-      <mat-form-field appearance="outline" floatLabel="always">
-        <mat-label>Address</mat-label>
-        <input matInput hidden>
-        <div class="personal"  style="margin-left: 5px;">
-          <mat-form-field appearance="outline">
-            <mat-label>Address</mat-label>
-            <input matInput>
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>City</mat-label>
-            <input matInput>
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>State</mat-label>
-            <input matInput>
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>Country</mat-label>
-            <input matInput>
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Pin Code</mat-label>
-            <input matInput>
-          </mat-form-field>
-
-          <mat-form-field appearance="outline" floatLabel="always">
-            <mat-label>Type</mat-label>
-            <mat-select placeholder="Select Type">
-              <mat-form-field appearance="outline" class="search"> <input
-                  matInput type="text" placeholder="Search">
-                <mat-icon matPrefix>search</mat-icon>
-              </mat-form-field>
-              <mat-option
-                *ngFor="let address of AddressType">{{address}}</mat-option>
-            </mat-select>
-          </mat-form-field>
-
-          <button mat-button class="mobn" style="margin-left: 10px;">Add</button>
-        </div>
-
-        
-      </mat-form-field>
-    </div>
-
-    <!-------------Imp Code-->
-
-    <div class="row">
-      <mat-form-field appearance="outline" floatLabel="always">
-        <mat-label>Organization And Website</mat-label>
-        <input matInput hidden>
-
-         <div class="row">     
-
-          <div class="col-md-6">
-            <div class="row">
-              <div class="col-md-5">
-                <mat-form-field appearance="outline" >
-                  <input matInput>
-                  <mat-label>Organization Name</mat-label>
+            <!*--------------------------------------------- Reference --------------------------------------------->
+            <div class="col-md-3 flex-row">
+                <mat-form-field appearance="outline" class="example-full-width" floatLabel="always">
+                    <mat-label>Reference</mat-label>
+                    <mat-select placeholder="Select Reference" formControlName="reference">
+                        <mat-option *ngFor="let reference of references$|async"
+                                    [value]="reference">{{reference}}</mat-option>
+                    </mat-select>
+                    <!--          <mat-icon matIconSuffix style="color: red;">close</mat-icon>-->
                 </mat-form-field>
-              </div>
-
-              <div class="col-md-5">
-                <mat-form-field appearance="outline" floatLabel="always">
-                  <mat-label>Type</mat-label>
-                  <mat-select placeholder="Select Type">
-                    <mat-form-field appearance="outline" class="search"> <input matInput
-                      type="text" placeholder="Search">
-                    <mat-icon matPrefix>search</mat-icon>
-                  </mat-form-field>
-                    <mat-option *ngFor="let orgurl of Organization" [value]="orgurl">{{orgurl}}</mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
-
-              <div class="col-md-2">
-                <button mat-button (click)="organizationadd()" class="mobn" style="margin-left: 10px;">Add</button>
-              </div>
-             
-              <div  [formGroup]="orgform"   class="col-md-12"  *ngIf="organizationUrl" >
-                <table class="table table-responsive table-bordered" >
-                  <thead formArrayName="itemsorg" class="tablehead">
-                    <th>Value</th>
-                    <th>Type</th>
-                    <th>Action</th>
-                  </thead>
-  
-                  <tbody *ngFor="let item of itemsorg.controls; let i=index" class="tablebody">
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td><i class="fa fa-close" (click)="deleteorgItems(i)" style="color: red;"></i></td>
-                      </tr>
-                    
-                  </tbody>
-                </table>
-                <!-- <div [formGroup]="form1" class="addbtnclick" >
-                  <div formArrayName="items1" >
-                    <input placeholder="Value" class="titlestyle">
-                    <input placeholder="Type" class="titlestyle">
-                    <input placeholder="Action" class="titlestyle">
-                    <div *ngFor="let item of items1.controls;let i=index"
-                      formGroupName="i" class="fields">
-                      <div>
-                        <input style="border-color: red;" formControlName="name1"
-                          type="text" />
-                      </div>
-                      <div>
-                        <input style="border-color: red;" formControlName="age1"
-                          type="text" />
-                      </div>
-                      <div>
-                        <input style="border-color: red;"
-                          (click)="deleteItems1(i)">
-                      </div>
-                    </div>
-                  </div>
-                </div> -->
-              </div>
-                
-              </div>  
-          
-
-          </div>
-
-          <div class="col-md-6">
-            <div class="row">
-              <div class="col-md-5">
-                <mat-form-field appearance="outline" >
-                  <input matInput>
-                  <mat-label>Web Url</mat-label>
-                </mat-form-field>
-
-              </div>
-
-              <div class="col-md-5">
-                <mat-form-field appearance="outline" floatLabel="always">
-                  <mat-label>Type</mat-label>
-                  <mat-select placeholder="Select Type" >
-                    <mat-form-field appearance="outline" class="search"> <input matInput
-                      type="text" placeholder="Search">
-                    <mat-icon matPrefix>search</mat-icon>
-                  </mat-form-field>
-                    <mat-option *ngFor="let webitem of Websitetype" [value]="webitems">{{webitem}}</mat-option>
-                  </mat-select>
-                </mat-form-field>
-
-              </div>
-
-              <div class="col-md-2">
-                <button mat-button (click)="websiteadd()" class="mobn" style="margin-left: 10px;">Add</button>
-              </div>  
+                <button mat-icon-button (click)="editRef()">
+                    <mat-icon>edit_note</mat-icon>
+                </button>
             </div>
+            <!*--------------------------------------------- EVENTS --------------------------------------------->
+            <div class="col-md-3">
+                <mat-form-field appearance="outline" class="example-full-width">
+                    <mat-label>Events</mat-label>
+                    <mat-select placeholder="Select Events" formControlName="event">
+                        <mat-option *ngFor="let event of Events" [value]="event">{{event}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-md-3">
+                <mat-form-field appearance="outline" class="example-full-width">
+                    <mat-label>Significant</mat-label>
+                    <input matInput [matDatepicker]="datePicker" formControlName="significantDate">
+                    <mat-datepicker-toggle [for]="datePicker" matIconSuffix></mat-datepicker-toggle>
+                    <mat-datepicker #datePicker></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div class="col-md-3">
+                <mat-form-field appearance="outline" floatLabel="always" class="example-full-width">
+                    <mat-label>Gender</mat-label>
+                    <mat-select placeholder="Select Gender" class="col-md-3" formControlName="gender">
+                        <mat-option *ngFor="let gender of Gender" [value]="gender">{{gender}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-md-3 flex-row">
+                <mat-form-field appearance="outline" floatLabel="always" class="example-full-width">
+                    <mat-label>Locations</mat-label>
+                    <mat-select placeholder="Select Locations" formControlName="location">
+                        <mat-option *ngFor="let location of Location" [value]="location">{{location}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <button mat-icon-button
+                        (click)="editRef()">
+                    <mat-icon>edit_note</mat-icon>
+                </button>
+            </div>
+            <div class="col-md-3 flex-row">
+                <mat-form-field appearance="outline" floatLabel="always" class="example-full-width">
+                    <mat-label>Language</mat-label>
+                    <mat-select placeholder="Select Language" formControlName="language" multiple>
 
-            <div  [formGroup]="orgform"   class="col-md-12"  *ngIf="websiteUrl" >
-              <table class="table table-responsive table-bordered" >
-                <thead formArrayName="webitems" class="tablehead">
-                  <th>Value</th>
-                  <th>Type</th>
-                  <th>Action</th>
-                </thead>
+                        <mat-option *ngFor="let languange of Languange"
+                                    [value]="languange">{{languange}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <button mat-icon-button>
+                    <mat-icon>edit_note</mat-icon>
+                </button>
+            </div>
+            <mat-form-field appearance="outline" class="col-md-3">
+                <mat-label>Hobby</mat-label>
+                <input matInput formControlName="hobby">
+            </mat-form-field>
+            <!*--------------------------------------------- TAGS --------------------------------------------->
+            <div class="col-md-3 flex-row">
+                <mat-form-field appearance="outline" floatLabel="always" class="example-full-width">
+                    <mat-label>Tag</mat-label>
+                    <mat-select placeholder="Select Tag" formControlName="tags" multiple>
+                        <mat-option *ngFor="let tag of Tag" [value]="tag">{{tag}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <button mat-icon-button>
+                    <mat-icon>edit_note</mat-icon>
+                </button>
+            </div>
+            <!*--------------------------------------------- NOTES --------------------------------------------->
+            <mat-form-field appearance="outline" class="col-md-12">
+                <mat-label>Notes</mat-label>
+                <input matInput formControlName="notes" (blur)="onBlur(notes)">
+            </mat-form-field>
 
-                <tbody *ngFor="let item of webitems.controls; let i=index" class="tablebody">
-                  <tr>
-                      <td></td>
-                      <td></td>
-                      <td><i class="fa fa-close" (click)="deletewebItems(i)" style="color: red;"></i></td>
-                    </tr>
-                  
-                </tbody>
-              </table>
-              <!-- <div [formGroup]="form1" class="addbtnclick" >
-                <div formArrayName="items1" >
-                  <input placeholder="Value" class="titlestyle">
-                  <input placeholder="Type" class="titlestyle">
-                  <input placeholder="Action" class="titlestyle">
-                  <div *ngFor="let item of items1.controls;let i=index"
-                    formGroupName="i" class="fields">
-                    <div>
-                      <input style="border-color: red;" formControlName="name1"
-                        type="text" />
+
+            <!--Fifth Row-->
+            <mat-form-field  appearance="outline" floatLabel="always" >
+                <mat-label>Contact Info</mat-label>
+                <input matInput hidden>
+                <!*--------------------------------------------- MOBILE AND EMAIL ID--------------------------------------------->
+             <div class="row">
+                <div class="col-md-6   row  ">
+                    <h6 class="ms-2">Mobile Number & Email Id</h6>
+                    <div class="" *ngFor="let control of contactsArray.controls;let i=index" formArrayName='contacts'>
+
+                        <div [formArrayName]="i">
+                            <div class="row">
+                                <mat-form-field appearance="outline" class="col-md-6">
+                                    <mat-label>Mobile</mat-label>
+                                    <input matInput formControlName="mobile" (blur)="mobileChange()">
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" class="col-md-4">
+                                    <mat-label> Type </mat-label>
+                                    <mat-select formControlName="type">
+                                        <mat-option *ngFor="let mobiletype of Mobile"
+                                                    [value]="mobiletype">{{mobiletype}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                <button mat-mini-fab color="primary" class="col-md-2" (click)="addContact()"   >
+                                    <mat-icon>add</mat-icon>
+                                </button>
+                            </div>
+
+                        </div>
                     </div>
-                    <div>
-                      <input style="border-color: red;" formControlName="age1"
-                        type="text" />
+
+                    <div class="" *ngFor="let control of emailArray.controls;let i=index" formArrayName='emails'>
+                        <div [formArrayName]="i">
+                            <div class="row">
+                                <mat-form-field appearance="outline" class="col-md-6">
+                                    <mat-label>Email</mat-label>
+                                    <input matInput appearance="outline" class="col-md-6" formControlName="email">
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" class="col-md-4">
+                                    <mat-label> Type </mat-label>
+                                    <mat-select formControlName="type">
+                                        <mat-option *ngFor="let emailtype of Email"
+                                                    [value]="emailtype">{{emailtype}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                <button mat-mini-fab color="primary" class="col-md-2" (click)="addEmail()">
+                                    <mat-icon>add</mat-icon>
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                      <input style="border-color: red;"
-                        (click)="deleteItems1(i)">
-                    </div>
-                  </div>
                 </div>
-              </div> -->
-            </div>
 
-            <!-- <div  [formGroup]="webform"   class="col-md-12"  *ngIf="websiteUrl" >
-              <table class="table table-responsive table-bordered" class="table" style="border: #f00;">
-                <thead formArrayName="webitems" class="tablehead">
-                  <th>Value</th>
-                  <th>Type</th>
-                  <th>Action</th>
-                </thead>  
+                <div class="col-md-6  ">
+                    <h6 class="ms-4">Groups</h6>
+                    <div class="" *ngFor="let control of groupArray.controls;let i=index" formArrayName='groups'>
+                        <div [formArrayName]="i">
+                            <div class="row">
+                                <mat-form-field appearance="outline" class="col-md-6">
+                                    <mat-label>Groups</mat-label>
+                                    <mat-select placeholder="Select Groups" formControlName="group">
+                                        <mat-option *ngFor="let group of Group" [value]="group">{{group}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" class="col-md-4">
+                                    <mat-label>Mobile</mat-label>
+                                    <mat-select placeholder="Select Mobile" formControlName="type">
+                                        <mat-option *ngFor="let o of mobileOptions" [value]="o">{{o}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
 
-                <tbody *ngFor="let item of webitems.controls; let i=index" class="tablebody">
-                  <tr>
-                      <td></td>
-                      <td></td>
-                      <td><i class="fa fa-close" (click)="deletewebItems(i)"></i></td>
-                    </tr>   
-                </tbody>
-              </table>
-          </div> -->
-        </div>
-        </div>
-
-      </mat-form-field>
-    </div>
-
-
-
-    <!-- <div class="row">
-      <mat-form-field appearance="outline" floatLabel="always">
-        <mat-label>Organization And Website</mat-label>
-        <input matInput hidden>
-
-         <div class="row">     
-
-          <div class="col-md-6">
-            <div class="row">
-              <div class="col-md-5">
-                <mat-form-field appearance="outline" >
-                  <input matInput>
-                  <mat-label>Organization Name</mat-label>
-                </mat-form-field>
-
-              </div>
-
-              <div class="col-md-5">
-                <mat-form-field appearance="outline" floatLabel="always">
-                  <mat-label>Type</mat-label>
-                  <mat-select placeholder="Select Type">
-                    <mat-option *ngFor="let organizationname of Organization" [value]="organizationname">{{organizationname}}</mat-option>
-                  </mat-select>
-                </mat-form-field>
-
-              </div>
-
-              <div class="col-md-2">
-                <button mat-button (click)="organizationadd()" class="mobn">Add</button>
-              </div>
-             
-              <div  [formGroup]="orgform"   class="col-md-12"  *ngIf="organizationUrl" >
-                <table class="table table-responsive table-bordered"    >
-                  <thead formArrayName="itemsorg" class="tablehead">
-                    <th>Value</th>
-                    <th>Type</th>
-                    <th>Action</th>
-                  </thead>
-  
-                  <tbody *ngFor="let item of itemsorg.controls; let i=index" style="border-color: red;">
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td><i class="fa fa-close" (click)="deleteorgItems(i)" style="color: red;"></i></td>
-                      </tr>
-                  
-                  </tbody>
-                </table>
-                
-              </div>
-                
-              </div>  
-          
-
-          </div>
-
-          <div class="col-md-6">
-            <div class="row">
-              <div class="col-md-5">
-                <mat-form-field appearance="outline" >
-                  <input matInput>
-                  <mat-label>Website Url</mat-label>
-                </mat-form-field>
-
-              </div>
-
-              <div class="col-md-5">
-                <mat-form-field appearance="outline" floatLabel="always">
-                  <mat-label> Type </mat-label>
-                  <mat-select placeholder="Select Type">
-                    <mat-option *ngFor="let websiteurl of Websitetype" [value]="websiteurl">{{websiteurl}}</mat-option>
-                  </mat-select>
-                </mat-form-field>
-
-              </div>
-
-              <div class="col-md-2">
-                <button mat-button (click)="websiteadd()" class="mobn">Add</button>
-              </div>
-               
-            </div>
-            <div  [formGroup]="webform"   class="col-md-12"  *ngIf="websiteUrl" >
-              <table class="table table-responsive table-bordered">
-                <thead formArrayName="webitems" class="tablehead">
-                  <th >Value</th>
-                  <th>  </th>
-                  <th> </th>
-                </thead>
-
-                <tbody *ngFor="let item of webitems.controls; let i=index" class="closeicon">
-                  <tr>
-                      <td></td>
-                      <td></td>
-                      <td><i class="fa fa-close" (click)="deletewebItems(i)" class="close"></i></td>
-                    </tr>
-                  
-                </tbody>
-              </table>
-
-          </div>
-
-
-
-        </div>
-        </div>
-
-      </mat-form-field>
-    </div> -->
-
-    <!-- <button (click)="deleteItems(i)">Delete</button> -->
-    <!--Seventh Row-->
-
-    <!--Eight-->
-    <div class="row" class="check">
-      <mat-checkbox>Individual</mat-checkbox>
-      <mat-checkbox>Non-Individual</mat-checkbox>
-      <mat-checkbox>Representative</mat-checkbox>
-      <mat-checkbox>Staff</mat-checkbox>
-      <mat-checkbox>Personal</mat-checkbox>
-      <mat-checkbox>Office</mat-checkbox>
-    </div>
-
-    <button mat-button class="btnsubmit">Submit</button>
- 
-  </mat-card-content>
-</mat-card>
-
-<!-- <div [formGroup]="form" >
-                    
-                    <div formArrayName="items" > 
-                      <div *ngFor="let item of items.controls ;  let i = index" [formGroupName]="i" style="display: flex;">
-                          <input placeholder="name" formControlName="name" type="text"/>
-                        <input placeholder="age" formControlName="age" type="text"/>
-                        <button (click)="deleteItems(i)">Delete</button>
-                      </div>
+                                <button mat-mini-fab color="accent" (click)="addGroup()">
+                                    <mat-icon>check</mat-icon>
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                  </div> -->
 
-<!-- <table *ngIf="websiteUrlShow">
-                      <thead>
-                        <tr>
-                          <td>value</td>
-                          <td>Type</td>
-                          <td>Action</td>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        
-                        <tr>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                        </tr>
-                      </tbody>
-                    </table> -->
+                </div>
+
+             </div>
+            </mat-form-field>
+
+
+            <div class="row">
+
+                <mat-form-field appearance="outline" floatLabel="always">
+                    <mat-label>Address</mat-label>
+                    <input matInput hidden>
+
+                    <div class="personal" style="margin-left: 5px;">
+                        <div class="" *ngFor="let control of addressArray.controls;let i=index" formArrayName='addresses'>
+                            <div [formArrayName]="i">
+                                <div class="row">
+                        <mat-form-field appearance="outline" class="col-md-3">
+                            <mat-label>Address</mat-label>
+                            <input matInput formControlName="address" (blur)="onBlur(address)">
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" class="col-md-3">
+                            <mat-label>City</mat-label>
+                            <input matInput formControlName="city" (blur)="onBlur(city)">
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" class="col-md-3">
+                            <mat-label>State</mat-label>
+                            <input matInput formControlName="state" (blur)="onBlur(state)">
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" class="col-md-3">
+                            <mat-label>Country</mat-label>
+                            <input matInput formControlName="country" (blur)="onBlur(country)">
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" class="col-md-3">
+                            <mat-label>Pin Code</mat-label>
+                            <input matInput formControlName="pincode" >
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" floatLabel="always" class="col-md-3">
+                            <mat-label>Type</mat-label>
+                            <mat-select placeholder="Select Type">
+<!--                                <mat-form-field appearance="outline" class="search"><input-->
+<!--                                        matInput type="text" placeholder="Search">-->
+<!--                                    <mat-icon matPrefix>search</mat-icon>-->
+<!--                                </mat-form-field>-->
+                                <mat-option
+                                        *ngFor="let address of AddressType">{{address}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <button mat-raised-button class="mobn" color="primary" style="margin-left: 10px;" (click)="addAddress()" >Add</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </mat-form-field>
+            </div>
+
+            <!-------------Imp Code-->
+            <!*--------------------------------------------- ORGANISATIONS --------------------------------------------->
+            <div class="row">
+                <mat-form-field appearance="outline" floatLabel="always">
+                    <mat-label>Organization And Website
+
+                    </mat-label>
+                    <input matInput hidden>
+
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <div class="row">
+
+                                    <mat-form-field appearance="outline" class="col-md-5">
+                                        <input matInput [formControl]="organisationControl">
+                                        <mat-label>Organization Name</mat-label>
+                                    </mat-form-field>
+
+                                    <mat-form-field appearance="outline" floatLabel="always" class="col-md-5">
+                                        <mat-label>Type</mat-label>
+                                        <mat-select placeholder="Select Type"   [formControl]="organisationTypeControl" >
+                                            <mat-option *ngFor="let orgurl of Organization"
+                                                        [value]="orgurl">{{orgurl}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                <div class="col-md-2">
+                                    <button mat-raised-button color="primary" (click)="organizationadd()" class="mobn"
+                                            style="margin-left: 10px;">Add
+                                    </button>
+                                </div>
+
+                                <div  class="col-md-12"  >
+                                    <table *ngIf="organisationsArray.length>=1" class="table table-responsive table-bordered" style="border: #0b5ba8;">
+                                        <thead formArrayName="itemsorg" class="tablehead">
+                                        <th>Organisation</th>
+                                        <th>Type</th>
+                                        <th>Action</th>
+                                        </thead>
+
+
+                                        <tbody *ngFor="let item of organisationsArray.controls; let i=index" class="tablebody">
+                                        <tr>
+                                            <td>{{item.get('organisation')?.value}}</td>
+                                            <td>{{item.get('type')?.value}}</td>
+                                            <td><i class="fa fa-close" (click)="deleteOrganisationItem(i)" style="color: #0b5ba8"></i></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <mat-form-field appearance="outline">
+                                        <input matInput [formControl]="websiteControl">
+                                        <mat-label>Web Url</mat-label>
+                                    </mat-form-field>
+
+                                </div>
+
+                                <div class="col-md-5">
+                                    <mat-form-field appearance="outline" floatLabel="always">
+                                        <mat-label>Type</mat-label>
+                                        <mat-select placeholder="Select Type" [formControl]="websiteTypeControl">
+                                            <mat-option *ngFor="let webitem of Websitetype"
+                                                        [value]="webitem">{{webitem}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+
+                                </div>
+
+                                <div class="col-md-2">
+                                    <button mat-raised-button color="primary" (click)="websiteAdd()" class="mobn" style="margin-left: 10px;">
+                                        Add
+                                    </button>
+                                </div>
+
+                            </div>
+                            <div  class="col-md-12" *ngIf="websiteArray.length>=1">
+                                <table class="table table-responsive table-bordered"
+                                       style="border: #0b5ba8;">
+                                    <thead formArrayName="webitems" class="tablehead">
+                                    <th>Website</th>
+                                    <th>Type</th>
+                                    <th>Action</th>
+                                    </thead>
+
+                                    <tbody *ngFor="let item of websiteArray.controls; let i=index" class="tablebody">
+                                    <tr>
+                                        <td>{{item.get('website')?.value}}</td>
+                                        <td> {{item.get('type')?.value}}</td>
+                                        <td><i class="fa fa-close" (click)="deleteWebsiteItem(i)"></i></td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </mat-form-field>
+            </div>
+
+            <div class="row" class="check">
+                <mat-checkbox formControlName="individual">Individual</mat-checkbox>
+                <mat-checkbox formControlName="nonindividual">Non-Individual</mat-checkbox>
+                <mat-checkbox formControlName="representative">Representative</mat-checkbox>
+                <mat-checkbox formControlName="staff">Staff</mat-checkbox>
+                <mat-checkbox formControlName="personal">Personal</mat-checkbox>
+                <mat-checkbox formControlName="office">Office</mat-checkbox>
+            </div>
+        <mat-form-field appearance="outline" floatLabel="always" *ngIf="formGroup.get('representative')?.value===true">
+            <mat-label>Representative</mat-label>
+            <input matInput hidden>
+            <div class="row">
+<mat-form-field appearance="outline" floatLabel="always" class="col-md-12">
+    <mat-label>Status</mat-label>
+    <mat-select formControlName="status" >
+
+        <mat-option value="Main Agent">Main Agent</mat-option>
+        <mat-option value="Sub Agent">Sub Agent</mat-option>
+    </mat-select>
+</mat-form-field>
+<ng-container *ngIf="formGroup.get('status')?.value==='Main Agent'">
+    <div class="row">
+        <mat-form-field appearance="outline" floatLabel="always" class="col-md-3">
+            <mat-label>Main Distributor Name</mat-label>
+            <input matInput formControlName="mainDistributorName">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" floatLabel="always" class="col-md-3">
+            <mat-label>Service</mat-label>
+            <input matInput formControlName="service">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" floatLabel="always" class="col-md-3">
+            <mat-label>Main Agent Code</mat-label>
+            <input matInput formControlName="mainAgentCode">
+        </mat-form-field>
+        <mat-form-field appearance="outline" floatLabel="always" class="col-md-3">
+            <mat-label>EUIN</mat-label>
+            <input matInput formControlName="euin">
+        </mat-form-field>
+        <mat-form-field appearance="outline" floatLabel="always" class="col-md-3">
+            <mat-label>Representative Note</mat-label>
+            <input matInput formControlName="representativeNote">
+        </mat-form-field>
+        <mat-form-field appearance="outline" floatLabel="always" class="col-md-3">
+            <mat-label>Status</mat-label>
+            <mat-select  formControlName="activeStatus">
+                <mat-option value="true" >Active</mat-option>
+                <mat-option value="false">Inactive</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+</ng-container>
+                <ng-container *ngIf="formGroup.get('status')?.value==='Sub Agent'">
+                    <mat-form-field appearance="outline" floatLabel="always" class="col-md-3">
+                        <mat-label>Sub Agent  Name</mat-label>
+                        <input matInput formControlName="subAgentName">
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" floatLabel="always" class="col-md-3">
+                        <mat-label>User Id</mat-label>
+                        <input matInput formControlName="userId">
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" floatLabel="always" class="col-md-3">
+                        <mat-label>Password</mat-label>
+                        <input matInput formControlName="password">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" floatLabel="always" class="col-md-3">
+                        <mat-label>Representative Note</mat-label>
+                        <input matInput formControlName="representativeNote">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" floatLabel="always" class="col-md-3">
+                        <mat-label>Status</mat-label>
+                        <mat-select  formControlName="activeStatus">
+                            <mat-option value="true" >Active</mat-option>
+                            <mat-option value="false">Inactive</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </ng-container>
+
+            </div>
+        </mat-form-field>
+<!--form completed-->
+
+        </div>
+        <button mat-raised-button color="primary" class="btnsubmit" (click)="onSubmit()">Submit</button>
+<!--        <prettyjson [obj]="formGroup?.value"></prettyjson>-->
+
+    </mat-card-content>
+</mat-card>
