@@ -25,6 +25,9 @@ import { formatDate } from '@angular/common';
 import { CreateFormComponent } from './create-form/create-form.component';
 import {AngularFireDatabase} from "@angular/fire/compat/database";
 import {MatTableDataSource} from "@angular/material/table";
+import {AngularFirestore} from "@angular/fire/compat/firestore";
+import {ViewContactComponent} from "./view-contact/view-contact.component";
+import {EditFormComponent} from "./edit-form/edit-form.component";
 
 @Component({
   selector: 'app-contacts',
@@ -55,6 +58,7 @@ export class ContactsComponent
     public httpClient: HttpClient,
     public dialog: MatDialog,
     public contactsService: ContactsService,
+    private mFirestore:AngularFirestore,
     private snackBar: MatSnackBar,
 
   ) {
@@ -78,6 +82,7 @@ export class ContactsComponent
    })
   }
   detailsCall(row: Contacts) {
+
     let tempDirection: Direction;
     if (localStorage.getItem('isRtl') === 'true') {
       tempDirection = 'rtl';
@@ -140,7 +145,7 @@ const dialogRef= this.dialog.open(CreateFormComponent,{
   height:'100%',
   width:"180%"
 });
-  
+
 
 }
 
@@ -226,5 +231,38 @@ const dialogRef= this.dialog.open(CreateFormComponent,{
       panelClass: colorName,
     });
   }
+
+  openViewDialog(row:Contacts) {
+    this.dialog.open(ViewContactComponent,{
+      data:row,
+      height:'80%',
+      width:'80vw'
+    })
+  }
+
+openEditDialog(formData:Contacts){
+this.dialog.open(EditFormComponent,{
+  data:formData,
+  height:'80%',
+  width:'80vw'
+})
 }
+
+}
+
+
+function commands(){
+
+  // To Read a list of data from firestore
+
+
+
+
+
+}
+
+
+
+
+
 

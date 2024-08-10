@@ -109,7 +109,7 @@
                       <ng-container matColumnDef="significantDate">
                         <mat-header-cell *matHeaderCellDef mat-sort-header>D.O.B.</mat-header-cell>
                         <mat-cell *matCellDef="let row">
-                          <span class="mobile-label">Birth Date:</span>{{row.significantDate?.toDate() | date: 'dd/MM/yyyy'}}</mat-cell>
+                          <span class="mobile-label">Birth Date:</span>{{row.significantDate }}</mat-cell>
                       </ng-container>
                       <ng-container matColumnDef="reference">
                         <mat-header-cell *matHeaderCellDef mat-sort-header>Reference
@@ -119,9 +119,9 @@
                         </mat-cell>
                       </ng-container>
                       <ng-container matColumnDef="taq">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header>TAq
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>TAG
                         </mat-header-cell>
-                        <mat-cell *matCellDef="let row"><span class="mobile-label">Taq:</span> {{row.notes}}
+                        <mat-cell *matCellDef="let row"><span class="mobile-label">Tag:</span> {{row.tags}}
                         </mat-cell>
                       </ng-container>
                       <ng-container matColumnDef="personal">
@@ -139,9 +139,13 @@
                             <mat-icon>more_vert</mat-icon>
                           </button>
                           <mat-menu #menu="matMenu">
-                            <button mat-menu-item >
+                            <button mat-menu-item (click)="openEditDialog(row)" >
                               <i class="material-icons-two-tone align-middle msr-2">create</i>
                               <span>Edit Contact</span>
+                            </button>
+                            <button mat-menu-item (click)="openViewDialog(row)">
+                              <i class="material-icons-two-tone align-middle msr-2">visibility</i>
+                              <span>View</span>
                             </button>
                             <button mat-menu-item >
                               <i class="material-icons-two-tone align-middle msr-2">delete_forever</i>

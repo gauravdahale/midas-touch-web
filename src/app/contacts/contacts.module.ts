@@ -30,11 +30,16 @@ import { EditReferenceComponent } from './edit-reference/edit-reference.componen
 import {TypesComponent} from "./types/types/types.component";
 import {AddTypeComponent} from "./types/add-type/add-type.component";
 import {PrettyJsonModule} from "@stg-247/ngx-prettyjson";
- 
+import { ViewContactComponent } from './view-contact/view-contact.component';
+import { ViewLabelComponent } from './view-label/view-label.component';
+import {MatListModule} from "@angular/material/list";
+import {MatLineModule} from "@angular/material/core";
+import { EditFormComponent } from './edit-form/edit-form.component';
+
 
 
 @NgModule({
-  declarations: [ContactsComponent, contactForm, DeleteComponent, CreateFormComponent, EditReferenceComponent,TypesComponent,AddTypeComponent],
+  declarations: [ContactsComponent, contactForm, DeleteComponent, CreateFormComponent, EditReferenceComponent,TypesComponent,AddTypeComponent, ViewContactComponent, ViewLabelComponent, EditFormComponent],
     imports: [
         CommonModule,
         FormsModule,
@@ -59,6 +64,8 @@ import {PrettyJsonModule} from "@stg-247/ngx-prettyjson";
         MatProgressSpinnerModule,
         ComponentsModule,
         PrettyJsonModule,
+        MatListModule,
+        MatLineModule,
 
     ],
   providers: [ContactsService,TitleCasePipe],

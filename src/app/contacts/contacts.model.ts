@@ -1,4 +1,4 @@
-export interface FormData {
+export interface Contacts {
   prefix: string;
   firstName: string;
   middleName: string;
