@@ -75,7 +75,7 @@ export class CreateFormComponent {
                 private  mDialogRef:MatDialogRef<CreateFormComponent>,
                 private  mSnackBar:MatSnackBar,
                 private readonly mDatabase: AngularFireDatabase) {
-        this.prefixes$ = this.mDatabase.list<string>('subCategory/Prefix').valueChanges()
+         this.prefixes$ = this.mDatabase.list<string>('subCategory/Prefix').valueChanges() //Observable Realtime Database Used
         this.references$ = this.mDatabase.list<string>('subCategory/References').valueChanges()
         this.fb = fbApi
 

@@ -21,8 +21,9 @@ export class ContactsService  {
     return this.dialogData;
   }
   /** CRUD METHODS */
-  getAllContacts(): Observable<any[]> {
-    return this.mFirestore.collection<any>('contacts').valueChanges()
+  getAllContacts(): Observable<Contacts[]> {
+   return  this.mFirestore.collection<Contacts>('contacts').valueChanges({idField: 'id'})
+    // return this.mFirestore.collection<any>('contacts').valueChanges()
 
   }
   addContacts(contacts: Contacts): void {

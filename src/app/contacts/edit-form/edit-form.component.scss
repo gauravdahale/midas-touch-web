@@ -1,0 +1,31 @@
+.mobn{
+  border-radius: 25px;
+  //background-color: rgb(231, 12, 12);
+  width: 50px;
+  margin-top: 10px;
+
+}
+.btnsubmit{
+  border-radius: 25px;
+  //background-color: rgb(231, 12, 12);
+  width: 100px;
+  margin-top: 10px;
+  margin-left: 48%;
+}
+
+
+.btncheck{
+  margin-left: 320px;
+  background-color: red;
+  width: 80px;
+  border-radius: 50px;
+}
+
+.close-icon {
+  position: absolute;
+  right: 8px; /* Adjust positioning as needed */
+  margin-top: 40px;
+  margin-right: 25px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}

@@ -1,16 +1,3 @@
-.personal {
-  display: flex;
-
-  
-}
-
-.mat-mdc-form-field {
-  width:100%;
-  padding-left: 2px;
-  padding-right: 2px;
-
-}
-
 .check {
   display: flex;
   flex-wrap: wrap;
@@ -18,14 +5,14 @@
   align-items: center;
 }
 
-mat-card {
-  background-color: white;
-  border-radius: 20px;
-  
-}
-.container-fluid{
-  padding: 55px;
-}
+//mat-card {
+//  background-color: white;
+//  border-radius: 20px;
+//
+//}
+//.container-fluid{
+//  padding: 55px;
+//}
 .btn{
 float: right;
 display: flex;
@@ -48,8 +35,8 @@ display: flex;
 .close-icon {
   position: absolute;
   right: 8px; /* Adjust positioning as needed */
-   margin-top: 40px;
-   margin-right: 25px;
+  margin-top: 40px;
+  margin-right: 25px;
   transform: translateY(-50%);
   cursor: pointer;
 }
@@ -64,21 +51,21 @@ display: flex;
 .btngroup{
   border-radius: 25px;
    background-color: rgb(231, 12, 12);
-   
+
    width: 100px;
-   margin-left: 370px;     
-    
+   margin-left: 370px;
+
 }
 .mobn{
   border-radius: 25px;
-  background-color: rgb(231, 12, 12);    
+  //background-color: rgb(231, 12, 12);
   width: 50px;
   margin-top: 10px;
-  
+
 }
 .btnsubmit{
   border-radius: 25px;
-  background-color: rgb(231, 12, 12);    
+  //background-color: rgb(231, 12, 12);
   width: 100px;
   margin-top: 10px;
 margin-left: 48%;
@@ -87,7 +74,7 @@ margin-left: 48%;
 .icons{
   margin-top: 10px;
   font-size: 100px;
-  
+
 }
 .circlebtn{
 width: 62px; /* Adjust as needed */
@@ -111,18 +98,23 @@ border: 5px;
  margin-left: 6px;
 }
 
-.titlestyle{
-  background-color: rgb(199, 46, 46);
-  border-color: rgb(241, 97, 97);
-  text-align: center;
-  color: #f5eded;
-  
-}
+//.titlestyle{
+//  background-color: rgb(199, 46, 46);
+//  border-color: rgb(241, 97, 97);
+//  text-align: center;
+//  color: #f5eded;
+//
+//}
 .fields{
   display: flex;
 }
- 
-  
+#rcorners2 {
+  border-radius: 25px;
+  border: 2px solid #73AD21;
+  padding: 20px;
+
+}
+
 
 
 .btncheck{
@@ -130,38 +122,29 @@ border: 5px;
   background-color: red;
   width: 80px;
   border-radius: 50px;
-  
+
 }
 
 .tablehead{
-  background-color: red;
+  background-color: #0b5ba8;
+
   text-align: center;
+
   color: white;
   font-size: 15px;
-  border: red;
-  
-}
- 
 
-.table-bordered tbody tr td{
-  border: 1px solid #f00;
-  align-items: center;
 }
 
 .table-bordered tbody tr td{
-  border: 1px solid #f00;
+  border: 1px solid #0b5ba8;
   align-items: center;
 }
- 
- 
-
-
-
- 
 
 .tablebody{
-  text-align: center;
+   justify-items: center  ;
+  border: 1px solid #0b5ba8;
+
 }
- 
- 
- 
+
+
+
