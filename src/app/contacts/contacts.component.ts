@@ -26,8 +26,6 @@ import { CreateFormComponent } from './create-form/create-form.component';
 import {AngularFireDatabase} from "@angular/fire/compat/database";
 import {MatTableDataSource} from "@angular/material/table";
 import {AngularFirestore} from "@angular/fire/compat/firestore";
-import {ViewContactComponent} from "./view-contact/view-contact.component";
-import {EditFormComponent} from "./edit-form/edit-form.component";
 
 @Component({
   selector: 'app-contacts',
@@ -231,24 +229,6 @@ const dialogRef= this.dialog.open(CreateFormComponent,{
       panelClass: colorName,
     });
   }
-
-  openViewDialog(row:Contacts) {
-    this.dialog.open(ViewContactComponent,{
-      data:row,
-      height:'80%',
-      width:'80vw'
-    })
-  }
-
-openEditDialog(formData:Contacts){
-this.dialog.open(EditFormComponent,{
-  data:formData,
-  height:'80%',
-  width:'80vw'
-})
-}
-
-
 }
 
 
