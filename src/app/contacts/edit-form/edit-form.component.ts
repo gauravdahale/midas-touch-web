@@ -12,6 +12,9 @@ import {EditLanguangeComponent} from "../../edit-languange/edit-languange.compon
 import {EditTagComponent} from "../../edit-tag/edit-tag.component";
 import {Address, Contact, Contacts, Email} from "../contacts.model";
 
+class Group {
+}
+
 @Component({
   selector: 'app-edit-form',
   templateUrl: './edit-form.component.html',
@@ -69,22 +72,22 @@ export class EditFormComponent {
   references$: Observable<string[]>
   fb: FormBuilder
   mobileOptions: any[] = []
-  mData!:Contacts //Edit conatct Form
+  mData!: Contacts //Edit conatct Form
   constructor(private dialogref: MatDialog,
               private fbApi: FormBuilder,
-              private readonly mService:ContactsService,
+              private readonly mService: ContactsService,
               private titlecasePipe: TitleCasePipe,
-              private  mDialogRef:MatDialogRef<EditFormComponent>,
+              private mDialogRef: MatDialogRef<EditFormComponent>,
               @Inject(MAT_DIALOG_DATA) public dialogData: Contacts, //Edit contact part
-              private  mSnackBar:MatSnackBar,
+              private mSnackBar: MatSnackBar,
               private readonly mDatabase: AngularFireDatabase) {
     this.prefixes$ = this.mDatabase.list<string>('subCategory/Prefix').valueChanges()
     this.references$ = this.mDatabase.list<string>('subCategory/References').valueChanges()
     this.fb = fbApi
-this.mData= dialogData // Edit Conatct Form
-this.initFormWithData(this.mData)
+    this.mData = dialogData // Edit Conatct Form
+    this.initFormWithData(this.mData)
     this.addContactWithData(this.mData.contacts)
-    // this.addGroupWithData(this.mData.groups)
+    this.addGroupWithData(this.mData.groups)
     this.addEmailWithData(this.mData.emails)
     this.addAddressWithData(this.mData.addresses)
   }
@@ -126,9 +129,10 @@ this.initFormWithData(this.mData)
   addContact() {
     this.contactsArray.push(this.contactGroup())
   }
+
   //adding data form contacts from dialogData into contactsArray in Editform
-  addContactWithData(data:Contact[]) {
-    if(data.length>0) {
+  addContactWithData(data: Contact[]) {
+    if (data.length > 0) {
       data.forEach(it => {
         const fb = this.fb.group({
           mobile: this.fb.control(it.mobile, Validators.required),
@@ -142,8 +146,9 @@ this.initFormWithData(this.mData)
   addAddress() {
     this.addressArray.push(this.addressGroup())
   }
-  addAddressWithData(data:Address[]) {
-    if(data.length>0) {
+
+  addAddressWithData(data: Address[]) {
+    if (data.length > 0) {
       data.forEach(it => {
         const fb = this.fb.group({
           address: this.fb.control('', Validators.required),
@@ -161,8 +166,9 @@ this.initFormWithData(this.mData)
   addEmail() {
     this.emailArray.push(this.emailGroup())
   }
-  addEmailWithData(data:Email[]) {
-    if(data.length>0) {
+
+  addEmailWithData(data: Email[]) {
+    if (data.length > 0) {
       data.forEach(it => {
         const fb = this.fb.group({
           email: this.fb.control(it.email),
@@ -176,17 +182,19 @@ this.initFormWithData(this.mData)
   addGroup() {
     this.groupArray.push(this.groupControls())
   }
-  // addGroupWithData(data:Group[]) {
-  //   if(data.length>0) {
-  //     data.forEach(it => {
-  //       const fb = this.fb.group({
-  //         mobile: this.fb.control(it.mobile),
-  //         type: this.fb.control(it.type,)
-  //       })
-  //       this.contactsArray.push(fb)
-  //     })
-  //   }
-  // }
+
+     addGroupWithData(data: Group[]) {
+      if(data.length > 0){
+        data.forEach(it=>{
+          const fb =this.fb.group({
+            mobile:this.fb.control(''),
+            type:this.fb.control('')
+          })
+        })
+      }
+
+    }
+
 
   addressGroup() {
     return this.fb.group({
@@ -257,8 +265,6 @@ this.initFormWithData(this.mData)
     this.itemsorg.removeAt(index);
 
   }
-
-
 
 
   websiteadd() {
@@ -342,8 +348,8 @@ this.initFormWithData(this.mData)
 
 
   onSubmit() {
-    this.mService.addContactToDb(this.formGroup.value).then(res=>{
-      this.mSnackBar.open('Contact added successfully','',{duration:3000})
+    this.mService.addContactToDb(this.formGroup.value).then(res => {
+      this.mSnackBar.open('Contact added successfully', '', {duration: 3000})
       this.mDialogRef.close()
     })
   }
@@ -392,4 +398,6 @@ this.initFormWithData(this.mData)
     })
 
   }
+
 }
+
