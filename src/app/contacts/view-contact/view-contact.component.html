@@ -1,0 +1,441 @@
+<!--<p>view-contact works!</p>-->
+<!--{{data.firstName}}-->
+
+<!--PREFIX FIRST NAME MIDDLE NAME LAST NAME-->
+<!--<div class="row">-->
+<!--  <div class="col-md-3">-->
+<!--    <app-view-label title="Prefix" [subTitle]="data.prefix">-->
+<!--    <h5>Prefix</h5>-->
+<!--    <h6>{{data.prefix}}</h6>-->
+<!--    </app-view-label>-->
+<!--  </div>-->
+
+<!--  <div class="col-md-3">-->
+<!--    <p>First Name</p>-->
+<!--    <p>{{data.firstName}}</p>-->
+
+<!--  </div>-->
+<!--  <div class="col-md-3">-->
+<!--    <h5>First Name</h5>-->
+<!--    <h6>{{data.middleName}}</h6>-->
+<!--  </div>-->
+<!--  <div class="col-md-3">-->
+<!--    <h5>First Name</h5>-->
+<!--    <h6>{{data.lastName}}</h6>-->
+<!--  </div>-->
+<!--</div>-->
+<!--&lt;!&ndash;contacts&ndash;&gt;-->
+<!--<div>-->
+<!--  <div class="d-flex" *ngFor="let c of data.contacts">-->
+<!--    <div>-->
+<!--      <p>Number</p>-->
+<!--      <p>{{c.mobile}}</p>-->
+<!--    </div>-->
+<!--    <div>-->
+<!--      <p>Type</p>-->
+<!--      <p>{{c.type}}</p>-->
+<!--    </div>-->
+
+<!--  </div>-->
+
+<!--</div>-->
+
+
+<!--{{data.contacts}}-->
+<!--<div class="table bordered-table">-->
+<!--  <thead>-->
+<!--  <th class="tegsdf">fsdfs</th>-->
+<!--  <th>fsdfs</th>-->
+<!--  </thead>-->
+<!--</div>-->
+
+
+<!--Prefix FirstName MiddleName Family Name -->
+ <div class="container">
+    <ng-container>
+      <h6><i class="fa fa-user" style="margin-right: 10px"></i>Personal Info <app-view-label   [subTitle]="data.firstName"></app-view-label></h6>
+    </ng-container>
+  <div class="borderset" >
+    <div class="row">
+      <div class="col-md-3">
+        <div>
+          <app-view-label title="Prefix" [subTitle]="data.prefix"></app-view-label>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <app-view-label title="First Name" [subTitle]="data.firstName"></app-view-label>
+      </div>
+      <div class="col-md-3">
+        <app-view-label title="Middle Name" [subTitle]="data.middleName"></app-view-label>
+      </div>
+      <div class="col-md-3">
+        <app-view-label title="Family Name" [subTitle]="data.lastName"></app-view-label>
+      </div>
+
+      <div class="col-md-3">
+        <div>
+          <app-view-label title="Reference" [subTitle]="data.reference"></app-view-label>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <app-view-label title="Event" [subTitle]="data.event"></app-view-label>
+      </div>
+
+      <div class="col-md-3">
+        <app-view-label title="Significant Date"  [date]="true"></app-view-label>
+
+      </div>
+
+      <div class="col-md-3">
+        <app-view-label title="Gender" [subTitle]="data.gender"></app-view-label>
+      </div>
+
+      <div class="col-md-3">
+        <app-view-label title="Location" [subTitle]="data.location"></app-view-label>
+      </div>
+
+      <div class="col-md-3">
+        <app-view-label title="Languange" [subTitle]="data.language"></app-view-label>
+      </div>
+
+      <div class="col-md-3">
+        <app-view-label title="Hobby" [subTitle]="data.hobby"></app-view-label>
+      </div>
+
+      <div class="col-md-3">
+        <app-view-label title="Tag" [subTitle]="data.tags"></app-view-label>
+      </div>
+
+      <div class="col-md-3">
+        <app-view-label title="Note" [subTitle]="data.notes"></app-view-label>
+      </div>
+
+    </div>
+  </div>
+
+
+<!--   MobileNo Type Group Mobile No Email Type-->
+   <h6><i class="fa fa-mobile" aria-hidden="true" style="margin-right: 10px"></i>Mobile Number And Email Id</h6>
+    <div class="borderset"  >
+      <div class="row">
+        <!--     Mobile & Type-->
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-6">
+              <app-view-label title="Mobile" [isArray]="true" [array]="data.contacts" item="mobile"></app-view-label>
+
+            </div>
+            <div class="col-md-6">
+              <app-view-label title="Type" [isArray]="true" [array]="data.contacts" item="type"></app-view-label>
+              <!--           <mat-list>-->
+              <!--             <mat-list-item>-->
+              <!--               <span matListItemTitle>Type</span>-->
+              <!--                 <span *ngFor="let d of data.contacts" matListItemLine>{{d.type}}<br></span>-->
+              <!--             </mat-list-item>-->
+              <!--           </mat-list>-->
+            </div>
+          </div>
+        </div>
+
+        <!--     Groups Mobile-->
+
+        <div class="col-md-6">
+          <div class="row"  >
+            <div class="col-md-6">
+              <app-view-label title="Mobile" [isArray]="true" [array]="data.contacts" item="mobile"></app-view-label>
+            </div>
+
+            <div class="col-md-6">
+              <app-view-label title="Type" [isArray]="true" [array]="data.contacts" item="type"></app-view-label>
+            </div>
+          </div>
+        </div>
+
+        <!--     Email & Mobile-->
+        <div class="col-md-6">
+          <div class="row"  >
+            <div class="col-md-6">
+              <app-view-label title="Email" [isArray]="true" [array]="data.contacts" item="email"></app-view-label>
+
+              <!--           <mat-list>-->
+              <!--             <mat-list-item>-->
+              <!--               <span matListItemTitle>Email</span>-->
+              <!--               <span matListItemLine *ngFor="let e of data.emails">{{e.email}}</span>-->
+              <!--             </mat-list-item>-->
+              <!--           </mat-list>-->
+            </div>
+            <div class="col-md-6">
+              <app-view-label title="Type" [isArray]="true" [array]="data.contacts" item="type"></app-view-label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!--   Address array-->
+   <h6><i class="fa fa-home" aria-hidden="true" style="margin-right: 10px"></i>Address</h6>
+   <div class="borderset">
+     <div class="row">
+       <!--     Address-->
+       <div class="col-md-3">
+         <app-view-label title="Address" [isArray]="true" [array]="data.contacts" item="address"></app-view-label>
+       </div>
+
+       <!--     City-->
+       <div class="col-md-3">
+         <app-view-label title="City" [isArray]="true" [array]="data.contacts" item="city"></app-view-label>
+       </div>
+
+       <!--     State-->
+       <div class="col-md-3">
+         <app-view-label title="State" [isArray]="true" [array]="data.contacts" item="state"></app-view-label>
+
+       </div>
+
+       <!--     Country-->
+       <div class="col-md-3">
+         <app-view-label title="Country" [isArray]="true" [array]="data.contacts" item="country"></app-view-label>
+       </div>
+
+       <!--     Pincode-->
+       <div class="col-md-3">
+         <app-view-label title="Pincode" [isArray]="true" [array]="data.contacts" item="pincode"></app-view-label>
+       </div>
+
+       <!--     Type-->
+       <div class="col-md-3">
+         <app-view-label title="Type" [isArray]="true" [array]="data.contacts" item="type"></app-view-label>
+       </div>
+     </div>
+   </div>
+
+<!--   Organization & WebUrl-->
+   <h6><i class="fa fa-university" style="margin-right: 10px"></i>Organization & Website</h6>
+   <div class="borderset">
+     <div class="row" >
+       <!-- Organization & type-->
+       <div class="col-md-6">
+         <div class="row">
+           <!--         Organisation Title-->
+           <div class="col-md-6">
+             <app-view-label title="Organisation" [isArray]="true" [array]="data.contacts" item="organisation"></app-view-label>
+           </div>
+           <!--         Organisation Type-->
+           <div class="col-md-6">
+             <app-view-label title="Type" [isArray]="true" [array]="data.contacts" item="type"></app-view-label>
+           </div>
+         </div>
+       </div>
+
+       <!--     Website & Type-->
+       <div class="col-md-6">
+         <div class="row">
+           <!--         Website Name-->
+           <div class="col-md-6">
+             <app-view-label title="Website" [isArray]="true" [array]="data.contacts" item="website"></app-view-label>
+           </div>
+
+           <!--         Website Type-->
+           <div class="col-md-6">
+             <app-view-label title="Type" [isArray]="true" [array]="data.contacts" item="type"></app-view-label>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+
+
+
+
+
+<!--   Representative Select Opt-->
+    <div class="container">
+     <ng-container *ngIf="data.representative">
+       <div class="row">
+         <app-view-label title="Status" [isArray]="true" [array]="data.contacts" item="status"></app-view-label>
+         <!--        <mat-list>-->
+         <!--          <mat-list-item>-->
+         <!--            <span matListItemTitle>Status</span>-->
+         <!--            <span matListItemLine>Status Select</span>-->
+         <!--          </mat-list-item>-->
+         <!--        </mat-list>-->
+       </div>
+     </ng-container>
+    </div>
+
+<!--   Main Agent-->
+<ng-container *ngIf="data.agetnStatus">
+  <h6>Main Agent</h6>
+   <div class="row">
+<!--     Main Distribution Name-->
+     <div class="col-md-3">
+       <app-view-label title="Main Distribution Name" [isArray]="true" [array]="data.contacts" item="mainDistributorName"></app-view-label>
+<!--       <mat-list>-->
+<!--         <mat-list-item>-->
+<!--           <span matListItemTitle>Main Distribution Name</span>-->
+<!--           <span matListItemLine>Select Distri</span>-->
+<!--         </mat-list-item>-->
+<!--       </mat-list>-->
+     </div>
+<!--Service-->
+     <div class="col-md-3">
+       <app-view-label title="Service" [isArray]="true" [array]="data.contacts" item="service"></app-view-label>
+<!--       <mat-list>-->
+<!--         <mat-list-item>-->
+<!--           <span matListItemTitle>Service</span>-->
+<!--           <span matListItemLine>Selct service</span>-->
+<!--         </mat-list-item>-->
+<!--       </mat-list>-->
+     </div>
+
+<!--     Main Agent code-->
+     <div class="col-md-3">
+       <app-view-label title="Main Agent Code" [isArray]="true" [array]="data.contacts" item="mainAgentCode"></app-view-label>
+<!--       <mat-list>-->
+<!--         <mat-list-item>-->
+<!--           <span matListItemTitle>Main Agent Code</span>-->
+<!--           <span matListItemLine>Select Agent Code</span>-->
+<!--         </mat-list-item>-->
+<!--       </mat-list>-->
+     </div>
+
+     <!--   EUIN-->
+     <div class="col-md-3">
+       <app-view-label title="EUIN" [isArray]="true" [array]="data.contacts" item="euin"></app-view-label>
+<!--       <mat-list>-->
+<!--         <mat-list-item>-->
+<!--           <span matListItemTitle>EUIN</span>-->
+<!--           <span matListItemLine>Select EUIN</span>-->
+<!--         </mat-list-item>-->
+<!--       </mat-list>-->
+     </div>
+
+
+     <!--   Representative Note-->
+     <div class="col-md-3">
+       <app-view-label title="Representative Note" [isArray]="true" [array]="data.contacts" item="representativeNote"></app-view-label>
+<!--       <mat-list>-->
+<!--         <mat-list-item>-->
+<!--           <span matListItemTitle>Representative Code</span>-->
+<!--           <span matListItemLine>Select Repre Code</span>-->
+<!--         </mat-list-item>-->
+<!--       </mat-list>-->
+     </div>
+
+<!--     Status-->
+     <div class="col-md-3">
+       <app-view-label title="Status" [isArray]="true" [array]="data.contacts" item="agentStatus"></app-view-label>
+<!--       <mat-list>-->
+<!--         <mat-list-item>-->
+<!--           <span matListItemTitle>Status</span>-->
+<!--           <span matListItemLine>Select Status</span>-->
+<!--         </mat-list-item>-->
+<!--       </mat-list>-->
+     </div>
+   </div>
+</ng-container>
+<!--   Sub Agent-->
+    <ng-container *ngIf="data.agetnStatus">
+      <h6>Sub Agent</h6>
+      <div class="row">
+        <!-- Sub Agent Name-->
+        <div class="col-md-3">
+          <app-view-label title="Sub Agent Name" [isArray]="true" [array]="data.contacts" item="subAgentName"></app-view-label>
+          <!--       <mat-list>-->
+          <!--         <mat-list-item>-->
+          <!--           <span matListItemTitle>Sub Agent Name</span>-->
+          <!--           <span matListItemLine>Select Agent</span>-->
+          <!--         </mat-list-item>-->
+          <!--       </mat-list>-->
+        </div>
+        <!--Service-->
+        <div class="col-md-3">
+          <app-view-label title="Service" [isArray]="true" [array]="data.contacts" item="service"></app-view-label>
+          <!--       <mat-list>-->
+          <!--         <mat-list-item>-->
+          <!--           <span matListItemTitle>Service</span>-->
+          <!--           <span matListItemLine>Selct service</span>-->
+          <!--         </mat-list-item>-->
+          <!--       </mat-list>-->
+        </div>
+
+        <!--User Id-->
+        <div class="col-md-3">
+          <app-view-label title="User Id" [isArray]="true" [array]="data.contacts" item="userId"></app-view-label>
+          <!--       <mat-list>-->
+          <!--         <mat-list-item>-->
+          <!--           <span matListItemTitle>Main Agent Code</span>-->
+          <!--           <span matListItemLine>Select Agent Code</span>-->
+          <!--         </mat-list-item>-->
+          <!--       </mat-list>-->
+        </div>
+
+        <!------Password-------->
+        <div class="col-md-3">
+          <app-view-label title="Password" [isArray]="true" [array]="data.contacts" item="password"></app-view-label>
+          <!--       <mat-list>-->
+          <!--         <mat-list-item>-->
+          <!--           <span matListItemTitle>EUIN</span>-->
+          <!--           <span matListItemLine>Select EUIN</span>-->
+          <!--         </mat-list-item>-->
+          <!--       </mat-list>-->
+        </div>
+
+        <!--   Representative Note-->
+        <div class="col-md-3">
+          <app-view-label title="Representative Note" [isArray]="true" [array]="data.contacts" item="representativeNote"></app-view-label>
+          <!--       <mat-list>-->
+          <!--         <mat-list-item>-->
+          <!--           <span matListItemTitle>Representative Code</span>-->
+          <!--           <span matListItemLine>Select Repre Code</span>-->
+          <!--         </mat-list-item>-->
+          <!--       </mat-list>-->
+        </div>
+
+        <!-- Select Status-->
+        <div class="col-md-3">
+          <app-view-label title="Status" [isArray]="true" [array]="data.contacts" item="status"></app-view-label>
+          <!--       <mat-list>-->
+          <!--         <mat-list-item>-->
+          <!--           <span matListItemTitle>Status</span>-->
+          <!--           <span matListItemLine>Select Status</span>-->
+          <!--         </mat-list-item>-->
+          <!--       </mat-list>-->
+        </div>
+      </div>
+    </ng-container>
+
+<!--   Status Active -->
+
+   <div>
+    <ng-container *ngIf="data.activeStatus">
+      <app-view-label title="Active" [isArray]="true" [array]="data.contacts" item="activeStatus" >
+      </app-view-label>
+    </ng-container>
+<!--     <mat-list>-->
+<!--       <mat-list-item>-->
+<!--         <span matListItemTitle>Active</span>-->
+<!--         <span matListItemLine  *ngIf="data.status">Select Active</span>-->
+<!--       </mat-list-item>-->
+<!--     </mat-list>-->
+<!--   </div>-->
+
+<!--   Status InActive-->
+   <div>
+      <ng-container *ngIf="data.activeStatus">
+        <app-view-label title="InActive" [isArray]="true" [array]="data.contacts" item="activeStatus"></app-view-label>
+      </ng-container>
+<!--     <mat-list>-->
+<!--       <mat-list-item>-->
+<!--         <span matListItemTitle>InActive</span>-->
+<!--         <span matListItemLine *ngIf="data.status">Select InActive</span>-->
+<!--       </mat-list-item>-->
+<!--     </mat-list>-->
+   </div>
+ </div>
+ </div>
+
+
+
+
