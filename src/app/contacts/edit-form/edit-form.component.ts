@@ -78,6 +78,7 @@ export class EditFormComponent {
               private readonly mService: ContactsService,
               private titlecasePipe: TitleCasePipe,
               private mDialogRef: MatDialogRef<EditFormComponent>,
+              private _snackBar: MatSnackBar,
               @Inject(MAT_DIALOG_DATA) public dialogData: Contacts, //Edit contact part
               private mSnackBar: MatSnackBar,
               private readonly mDatabase: AngularFireDatabase) {
