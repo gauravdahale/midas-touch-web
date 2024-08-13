@@ -97,13 +97,13 @@
                       <ng-container matColumnDef="mobile">
                         <mat-header-cell *matHeaderCellDef mat-sort-header>Mobile
                         </mat-header-cell>
-                        <mat-cell *matCellDef="let row"> <span class="mobile-label">Mobile:</span>{{row.contacts[0].mobile}}
+                        <mat-cell *matCellDef="let row"> <span class="mobile-label">Mobile:</span>{{row.contacts[0]?.mobile}}
                         </mat-cell>
                       </ng-container>
                       <ng-container matColumnDef="email">
                         <mat-header-cell *matHeaderCellDef mat-sort-header>Email
                         </mat-header-cell>
-                        <mat-cell *matCellDef="let row"> <span class="mobile-label">Email:</span>{{row.emails[0].email}}
+                        <mat-cell *matCellDef="let row"> <span class="mobile-label">Email:</span>{{row.emails[0]?.email}}
                         </mat-cell>
                       </ng-container>
                       <ng-container matColumnDef="significantDate">
