@@ -1,0 +1,9 @@
+<div class="addborder">
+<div class=""> {{ title }}</div>
+<span *ngIf="!isArray && date "> <strong>{{ dateValue?.toDate()}} </strong></span>
+<span *ngIf="!isArray "> <strong>{{ subTitle }} </strong></span>
+<ng-container *ngIf="isArray">
+  <span *ngFor=" let d of (array)"><strong> {{ d[item] }} </strong></span>
+</ng-container>
+</div>
+<!--ffdsfsfsdfsdfsffsd-->
