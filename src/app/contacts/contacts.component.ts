@@ -87,14 +87,11 @@ export class ContactsComponent
     } else {
       tempDirection = 'ltr';
     }
-    this.dialog.open(FormComponent, {
-      data: {
-        contacts: row,
-        action: 'details',
-      },
+    this.dialog.open(ViewContactComponent, {
+      data:row,
       direction: tempDirection,
-      height: '75%',
-      width: '35%',
+      height: '80%',
+      width: '80%',
     });
   }
   toggleStar(row: Contacts) {
