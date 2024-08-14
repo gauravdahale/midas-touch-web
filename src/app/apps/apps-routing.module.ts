@@ -21,6 +21,8 @@ const routes: Routes = [
     path: 'dragdrop',
     component: DragDropComponent,
   },
+
+
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],
